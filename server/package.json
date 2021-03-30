@@ -3,5 +3,16 @@
   "version": "1.0.0",
   "main": "App.js",
   "author": "Sagun Jaiswal",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2"
+  },
+  "scripts": {
+    "dev" : "nodemon App.js",
+    "start" : "node App.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
