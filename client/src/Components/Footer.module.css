@@ -1,0 +1,77 @@
+/* footer */
+.footer {
+  /* position: fixed; */
+
+  /* z-index: 1; */
+  bottom: 0px;
+  width: 100%;
+}
+
+.mainFooter {
+  display: flex;
+  width: 100%;
+  bottom: 0;
+  bottom: 0px;
+  background: #111;
+}
+.subFooter {
+  width: 33%;
+  margin: 20px;
+  padding: 10px 20px;
+  color: #5f9ea0;
+}
+.subFooter h2 {
+  color: #6691b7;
+}
+.subFooter form input,
+.subFooter form textarea {
+  width: 100%;
+  font-size: 1.0625rem;
+  color: #f4dada;
+  background: #504e4e;
+  padding-left: 10px;
+  border: 1px solid #222222;
+  border-radius: 15px;
+  margin-bottom: 7px;
+}
+.subFooter button {
+  height: 30px;
+  width: 90%;
+  border: none;
+  outline: none;
+  background: #6691b7;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 5px;
+}
+.bottom center {
+  padding: 5px;
+  font-size: 0.9375rem;
+  background: #151515;
+}
+
+.bottom center span {
+  color: #656565;
+}
+
+.bottom center a {
+  color: #ff5959;
+  text-decoration: none;
+}
+
+.bottom center a:hover {
+  text-decoration: underline;
+}
+@media screen and (max-width: 500px) {
+  .mainFooter {
+    position: relative;
+    bottom: 0px;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .subFooter {
+  }
+}
