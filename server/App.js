@@ -27,13 +27,13 @@ app.use(express.json());
 
 //CORS ISSUE FIXING
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-COntrol-Allow-Headers",
+  res.Navbar("Access-Control-Allow-Origin", "*");
+  res.Navbar(
+    "Access-COntrol-Allow-Navbars",
     "Origin,X-Requested-With,Content-Type,Accept,Authorization"
   );
   if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT,PATCH,POST,DELETE,GET");
+    res.Navbar("Access-Control-Allow-Methods", "PUT,PATCH,POST,DELETE,GET");
     return res.status(200).json({});
   }
   next();
