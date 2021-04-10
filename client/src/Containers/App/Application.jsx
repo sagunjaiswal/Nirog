@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../../Components/Footer";
-import Navbar from "../../Components/Navbar";
+import Footer from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Header/Navbar";
 import Accordion from "../../Components/faqs/Accordion";
 // import styles from "./Application.module.css";
 // import Routes from "../../Routes/Routes";

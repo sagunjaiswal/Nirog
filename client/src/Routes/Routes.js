@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 
 import Default from "../Components/Default";
-import DoctorRegistrationForm from "../Components/DoctorRegistrationForm";
-import DoctorLoginForm from "../Components/DoctorLoginForm";
+import DoctorRegistrationForm from "../Components/forms/Doctor/LoginForm/DoctorLoginForm.jsx";
+import DoctorLoginForm from "../Components/forms/Doctor/RegistrationForm/DoctorRegistrationForm.jsx";
 import Application from "../Containers/App/Application";
 
 const Routes = () => {
