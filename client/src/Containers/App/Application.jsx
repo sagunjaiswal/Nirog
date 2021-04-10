@@ -1,16 +1,24 @@
 import React from "react";
-import styles from "./Application.module.css";
-import Footer from "../../Components/Footer.jsx";
-import Navbar from "../../Components/Navbar.jsx";
-import Accordion from "../../Components/faqs/Accordion.jsx"
+import { Link } from "react-router-dom";
+import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar";
+import Accordion from "../../Components/faqs/Accordion";
+// import styles from "./Application.module.css";
+import Routes from "../../Routes/Routes";
 
 const Application = () => {
   return (
     <div>
-    {/* // <div className={styles.application}> */}
-      <Navbar/>
-      <Accordion/>
-      <Footer /> 
+      <Navbar />
+      <Link to="/doctor-registration">
+        <button>DOCTOR REGISTRATION FORM</button>
+      </Link>
+      <br />
+      <Link to="/doctor-login">
+        <button>DOCTOR LOGIN FORM</button>
+      </Link>
+      <Accordion />
+      <Footer />
     </div>
   );
 };

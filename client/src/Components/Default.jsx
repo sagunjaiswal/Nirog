@@ -4,9 +4,9 @@ import React from "react";
 const Default = () => {
     
         return (
-            <div>
-                Default Page
-            </div>
+            <h1>
+                PAGE NOT FOUND 404
+            </h1>
         )
     
 }
