@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { styles } from "./DoctorLoginForm.module.css";
+import { styles } from "./UserLoginForm.module.css";
 
-const DoctorLoginForm = () => {
+const UserLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onChangeHandler = (e) => {
@@ -46,5 +46,3 @@ const DoctorLoginForm = () => {
     </form>
   );
 };
-
-export default DoctorLoginForm;
