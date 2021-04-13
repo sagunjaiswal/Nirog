@@ -73,8 +73,8 @@ const DoctorRegistrationForm = () => {
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     const trimmedValue = value.trimLeft();
-    console.log(name);
-    console.log(value);
+    // console.log(name);
+    // console.log(value);
     if (name === "doctorName") setDoctorName(trimmedValue);
     else if (name === "highestDegree") setHighestDegree(trimmedValue);
     else if (name === "speciality") setSpeciality(trimmedValue);
@@ -189,6 +189,7 @@ const DoctorRegistrationForm = () => {
       .post("http://localhost:5000/doctor/", objToSend)
       .then((res) => {
         console.log(res.data);
+        console.log(objToSend);
       })
       .catch((err) => {
         console.log(err);
