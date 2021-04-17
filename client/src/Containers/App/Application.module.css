@@ -2,3 +2,7 @@
 .application {
   font-family: "Acme", sans-serif;
 }
+
+.AppContainer {
+  flex: 1;
+}

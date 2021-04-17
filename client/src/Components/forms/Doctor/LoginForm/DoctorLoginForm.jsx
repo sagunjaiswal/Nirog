@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import styles from "./DoctorLoginForm.module.css";
 import axios from "axios";
-import { styles } from "./DoctorLoginForm.module.css";
 
 const DoctorLoginForm = () => {
   const [email, setEmail] = useState("");
@@ -27,23 +27,25 @@ const DoctorLoginForm = () => {
       });
   };
   return (
-    <form onSubmit={(e) => onSubmitHandler(e)}>
-      <label>Enter email id :</label>
-      <input
-        type="text"
-        placeholder="email"
-        onChange={(e) => onChangeHandler(e)}
-        required
-      />
-      <label>Password : </label>
-      <input
-        type="password"
-        placeholder="password"
-        onChange={(e) => onChangeHandler(e)}
-        required
-      />
-      <button type="submit">SUBMIT</button>
-    </form>
+    <div className={styles.formContainer}>
+      <form onSubmit={(e) => onSubmitHandler(e)}>
+        <label>Enter email id :</label>
+        <input
+          type="text"
+          placeholder="email"
+          onChange={(e) => onChangeHandler(e)}
+          required
+        />
+        <label>Password : </label>
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(e) => onChangeHandler(e)}
+          required
+        />
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
   );
 };
 
