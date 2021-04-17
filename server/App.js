@@ -27,16 +27,31 @@ app.use(express.json());
 
 //CORS ISSUE FIXING
 app.use((req, res, next) => {
-  res.Navbar("Access-Control-Allow-Origin", "*");
-  res.Navbar(
-    "Access-COntrol-Allow-Navbars",
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-COntrol-Allow-Headers",
     "Origin,X-Requested-With,Content-Type,Accept,Authorization"
   );
   if (req.method === "OPTIONS") {
-    res.Navbar("Access-Control-Allow-Methods", "PUT,PATCH,POST,DELETE,GET");
+    res.header("Access-Control-Allow-Methods", "PUT,PATCH,POST,DELETE,GET");
     return res.status(200).json({});
   }
   next();
 });
+
+//route import
+const doctorRoute = require("./Routes/DoctorRoutes");
+
+//routes
+app.use('/doctor', doctorRoute);
+
+
+
+app.use('/' , (req,res,next)=> {
+  console.log('In the home route');
+  res.json('In the home route');
+  next();
+})
+
 
 module.exports = app;
