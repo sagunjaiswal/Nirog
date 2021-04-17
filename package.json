@@ -5,5 +5,7 @@
   "devDependencies": {
     "concurrently": "^6.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "reactstrap": "^8.9.0"
+  }
 }

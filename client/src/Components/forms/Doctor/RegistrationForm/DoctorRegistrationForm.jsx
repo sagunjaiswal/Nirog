@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./DoctorRegistrationForm.module.css";
 
@@ -44,31 +44,17 @@ const DoctorRegistrationForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [location, setLocation] = useState({
-  //   clinicName: "",
-  //   streetName: "",
-  //   locality: "",
-  //   landmark: "",
-  //   postOffice: "",
-  //   pinCode: "",
-  //   city: "",
-  //   district: "",
-  //   state: "",
-  //   time: {
-  //     mondayMorningSlot: "",
-  //     mondayEveningSlot: "",
-  //     tuedayMorningSlot: "",
-  //     tuedayEveningSlot: "",
-  //     wednesdayMorningSlot: "",
-  //     wednesdayEveningSlot: "",
-  //     thursdayMorningSlot: "",
-  //     thursdayEveningSlot: "",
-  //     fridayMorningSlot: "",
-  //     fridayEveningSlot: "",
-  //     saturdayMorningSlot: "",
-  //     saturdayEveningSlot: "",
-  //   },
-  // });
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  //errors
+  const [passwordError, setPasswordError] = useState(false);
+  const [experienceError, setExperienceError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
+
+  // useEffect(() => {
+  //   isValidate();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [confirmPassword]);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -77,24 +63,35 @@ const DoctorRegistrationForm = () => {
     // console.log(value);
     if (name === "doctorName") setDoctorName(trimmedValue);
     else if (name === "highestDegree") setHighestDegree(trimmedValue);
-    else if (name === "speciality") setSpeciality(trimmedValue);
-    else if (name === "number") {
+    else if (name === "speciality") {
+      setSpeciality(trimmedValue);
+    } else if (name === "number") {
       if (trimmedValue.length) {
         let num = Number(trimmedValue);
         setNumber(num);
       }
     } else if (name === "experienceMonth") {
-      if (trimmedValue.length) {
-        let expMnth = Number(trimmedValue);
+      // if (trimmedValue.length) {
+      let expMnth = Number(trimmedValue);
+      if (expMnth > 11) {
+        setExperienceError(true);
+        setExperienceMonth(expMnth);
+      } else {
+        setExperienceError(false);
         setExperienceMonth(expMnth);
       }
+      // }
     } else if (name === "experienceYear") {
       if (trimmedValue.length) {
         let expYr = Number(trimmedValue);
         setExperienceYear(expYr);
       }
-    } else if (name === "description") setDescription(trimmedValue);
-    else if (name === "clinicName") setClinicName(trimmedValue);
+    } else if (name === "description") {
+      setDescription(trimmedValue);
+      if (description.length >= 150) {
+        setDescriptionError(true);
+      } else setDescriptionError(false);
+    } else if (name === "clinicName") setClinicName(trimmedValue);
     else if (name === "streetName") setStreetName(trimmedValue);
     else if (name === "locality") setLocality(trimmedValue);
     else if (name === "landmark") setLandmark(trimmedValue);
@@ -126,25 +123,23 @@ const DoctorRegistrationForm = () => {
     //credentials
     else if (name === "email") setEmail(trimmedValue);
     else if (name === "password") setPassword(trimmedValue);
-
-    // console.log(name);
-    // console.log(value);
-    // else if (name === "location.clinicName") {
-    //   let loc = { ...location };
-    //   loc.name = value;
-    //   setLocation(loc);
-    // }
+    else if (name === "confirmPassword") {
+      setConfirmPassword(value);
+      isValidate();
+    }
   };
-  // const locationChangeHandler = (e) => {
-  //   const { name, value } = e.target;
 
-  //   console.log(name);
-  //   console.log(value);
-  //   const currlocation = { ...location };
-  //   // const currentState = foundEntry;
+  const isValidate = () => {
+    // if(confirmPassword.length === 0)
 
-  //   currlocation.name = value;
-  //   setLocation(currlocation);
+    password.length === confirmPassword.length && password === confirmPassword
+      ? setPasswordError(false)
+      : setPasswordError(true);
+  };
+
+  // const onChange = (e) => {
+  //   onChangeHandler(e);
+  //   // isValidate(e);
   // };
 
   const submitHandler = (e) => {
@@ -157,7 +152,7 @@ const DoctorRegistrationForm = () => {
       number: number,
       experience: exp,
       description: description,
-      locality: {
+      location: {
         clinicName: clinicName,
         streetName: streetName,
         locality: locality,
@@ -185,15 +180,17 @@ const DoctorRegistrationForm = () => {
         },
       },
     };
-    axios
-      .post("http://localhost:5000/doctor/", objToSend)
-      .then((res) => {
-        console.log(res.data);
-        console.log(objToSend);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (isValidate(objToSend)) {
+      axios
+        .post("http://localhost:5000/doctor/", objToSend)
+        .then((res) => {
+          console.log(res.data);
+          console.log(objToSend);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -227,6 +224,37 @@ const DoctorRegistrationForm = () => {
         </div>
         <div className={styles.formControl}>
           <label>Speciality : </label>
+          <select
+            className="custom-select"
+            name="speciality"
+            onChange={(e) => onChangeHandler(e)}
+            required
+          >
+            <option value="allergist">Allergist</option>
+            <option value="anesthesiologist">Anesthesiologist</option>
+            <option value="cardiologist">Cardiologist</option>
+            <option value="dentist">Dentist</option>
+            <option value="dermatologist">Dermatologist</option>
+            <option value="endocrinologist">Endocrinologist</option>
+            <option value="gastroenterologist">Gastroenterologist</option>
+            <option value="gynecologist">Gynecologist</option>
+            <option value="nephrologist">Nephrologist</option>
+            <option value="neurologist">Neurologist</option>
+            <option value="oncologist">Oncologist</option>
+            <option value="ophthalmologist">Ophthalmologist</option>
+            <option value="otolaryngologist">Otolaryngologist</option>
+            <option value="orthopedist">Orthopedist</option>
+            <option value="pediatrician">Pediatrician</option>
+            <option value="physician">Physician</option>
+            <option value="podiatrist">Podiatrist</option>
+            <option value="psychiatrist">Psychiatrist</option>
+            <option value="pulmonologist">Pulmonologist</option>
+            <option value="radiologist">Radiologist</option>
+            <option value="rheumatologist">Rheumatologist</option>
+            <option value="surgeon">Surgeon</option>
+            <option value="urologist">Urologist</option>
+          </select>
+          {/* 
           <input
             type="text"
             value={speciality}
@@ -234,7 +262,7 @@ const DoctorRegistrationForm = () => {
             placeholder="Speciality"
             onChange={(e) => onChangeHandler(e)}
             required
-          />
+          /> */}
         </div>
         <div className={styles.formControl}>
           <label>Number : </label>
@@ -243,7 +271,7 @@ const DoctorRegistrationForm = () => {
             value={number}
             name="number"
             placeholder="Contact Number"
-            onChange={(e) => onChangeHandler(e)}
+            onChange={`(e) => onChangeHandler(e) ; (e) => isValidate(e)`}
             required
           />
         </div>
@@ -263,6 +291,11 @@ const DoctorRegistrationForm = () => {
             placeholder="Months"
             onChange={(e) => onChangeHandler(e)}
           />
+          {experienceError ? (
+            <div style={{ color: "red" }}>
+              Experience month should be less than 12
+            </div>
+          ) : null}
         </div>
         <div className={styles.formInput}>
           <label>Description : </label>
@@ -273,6 +306,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Write something about yourself..."
             onChange={(e) => onChangeHandler(e)}
           />
+          {descriptionError ? (
+            <div style={{ color: "red" }}>Less than 150 characters allowed</div>
+          ) : null}
         </div>
         <div className={styles.formInput}>
           <h2>Address : </h2>
@@ -493,6 +529,20 @@ const DoctorRegistrationForm = () => {
             required
           />
         </div>
+        <div className={styles.formInput}>
+          <label>Confirm Password : </label>
+          <input
+            type="confirmPassword"
+            value={confirmPassword}
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            onChange={(e) => onChangeHandler(e)}
+            required
+          />
+        </div>
+        {passwordError ? (
+          <div style={{ color: "red" }}>Passwords dont match</div>
+        ) : null}
         <button type="submit">SUBMIT</button>
       </form>
     </div>
