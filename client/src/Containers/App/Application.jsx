@@ -1,24 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Footer from "../../Components/Footer/Footer";
-import Navbar from "../../Components/Header/Navbar";
-import Accordion from "../../Components/faqs/Accordion";
-// import styles from "./Application.module.css";
-// import Routes from "../../Routes/Routes";
+import LandingPage from "../../Components/LandingPage";
+import styles from "./Application.module.css";
 
 const Application = () => {
   return (
-    <div>
-      <Navbar />
-      <Link to="/doctor-registration">
-        <button>DOCTOR REGISTRATION FORM</button>
-      </Link>
-      <br />
-      <Link to="/doctor-login">
-        <button>DOCTOR LOGIN FORM</button>
-      </Link>
-      <Accordion />
-      <Footer />
+    <div className={styles.AppContainer}>
+      <LandingPage />
     </div>
   );
 };
