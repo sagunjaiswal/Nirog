@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import styles from "./DoctorRegistrationForm.module.css";
 
@@ -50,6 +50,20 @@ const DoctorRegistrationForm = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [experienceError, setExperienceError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
+  const [mondayMorningError, setMondayMorningError] = useState("");
+  const [mondayEveningError, setMondayEveningError] = useState("");
+  const [tuesdayMorningError, setTuesdayMorningError] = useState("");
+  const [tuesdayEveningError, setTuesdayEveningError] = useState("");
+  const [wednesdayMorningError, setWednesdayMorningError] = useState("");
+  const [wednesdayEveningError, setWednesdayEveningError] = useState("");
+  const [thursdayMorningError, setThursdayMorningError] = useState("");
+  const [thursdayEveningError, setThursdayEveningError] = useState("");
+  const [fridayMorningError, setFridayMorningError] = useState("");
+  const [fridayEveningError, setFridayEveningError] = useState("");
+  const [saturdayMorningError, setSaturdayMorningError] = useState("");
+  const [saturdayEveningError, setSaturdayEveningError] = useState("");
+  const [sundayMorningError, setSundayMorningError] = useState("");
+  const [sundayEveningError, setSundayEveningError] = useState("");
 
   // useEffect(() => {
   //   isValidate();
@@ -100,26 +114,179 @@ const DoctorRegistrationForm = () => {
     else if (name === "city") setCity(trimmedValue);
     else if (name === "district") setDistrict(trimmedValue);
     else if (name === "state") setState(trimmedValue);
-    else if (name === "mondayMorningSlot") setMondayMorningSlot(trimmedValue);
-    else if (name === "mondayEveningSlot") setMorningEveningSlot(trimmedValue);
-    else if (name === "tuesdayMorningSlot") setTuesdayMorningSlot(trimmedValue);
-    else if (name === "tuesdayEveningSlot") setTuesdayEveningSlot(trimmedValue);
-    else if (name === "wednesdayMorningSlot")
+    else if (name === "mondayMorningSlot") {
+      setMondayMorningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setMondayMorningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setMondayMorningError("");
+      }
+    } else if (name === "mondayEveningSlot") {
+      setMorningEveningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setMondayEveningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setMondayEveningError("");
+      }
+    } else if (name === "tuesdayMorningSlot") {
+      setTuesdayMorningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setTuesdayMorningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setTuesdayMorningError("");
+      }
+    } else if (name === "tuesdayEveningSlot") {
+      setTuesdayEveningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setTuesdayEveningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setTuesdayEveningError("");
+      }
+    } else if (name === "wednesdayMorningSlot") {
       setWednesdayMorningSlot(trimmedValue);
-    else if (name === "wednesdayEveningSlot")
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setWednesdayMorningError(
+          "Please follow the format eg. 08:00AM-10:00AM"
+        );
+      } else {
+        setWednesdayMorningError("");
+      }
+    } else if (name === "wednesdayEveningSlot") {
       setWednesdayEveningSlot(trimmedValue);
-    else if (name === "thursdayMorningSlot")
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setWednesdayEveningError(
+          "Please follow the format eg. 08:00AM-10:00AM"
+        );
+      } else {
+        setWednesdayEveningError("");
+      }
+    } else if (name === "thursdayMorningSlot") {
       setThursdayMorningSlot(trimmedValue);
-    else if (name === "thursdayEveningSlot")
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setThursdayMorningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setThursdayMorningError("");
+      }
+    } else if (name === "thursdayEveningSlot") {
       setThursdayEveningSlot(trimmedValue);
-    else if (name === "fridayMorningSlot") setFridayMorningSlot(trimmedValue);
-    else if (name === "fridayEveningSlot") setFridayEveningSlot(trimmedValue);
-    else if (name === "saturdayMorningSlot")
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setThursdayEveningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setThursdayEveningError("");
+      }
+    } else if (name === "fridayMorningSlot") {
+      setFridayMorningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setFridayMorningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setFridayMorningError("");
+      }
+    } else if (name === "fridayEveningSlot") {
+      setFridayEveningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setFridayEveningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setFridayEveningError("");
+      }
+    } else if (name === "saturdayMorningSlot") {
       setSaturdayMorningSlot(trimmedValue);
-    else if (name === "saturdayEveningSlot")
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setSaturdayMorningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setSaturdayMorningError("");
+      }
+    } else if (name === "saturdayEveningSlot") {
       setSaturdayEveningSlot(trimmedValue);
-    else if (name === "sundayMorningSlot") setSundayMorningSlot(trimmedValue);
-    else if (name === "sundayEveningSlot") setSundayEveningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setSaturdayEveningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setSaturdayEveningError("");
+      }
+    } else if (name === "sundayMorningSlot") {
+      setSundayMorningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setSundayMorningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setSundayMorningError("");
+      }
+    } else if (name === "sundayEveningSlot") {
+      setSundayEveningSlot(trimmedValue);
+      var str = trimmedValue.toLowerCase();
+      if (
+        (str.length !== 15 && str.length > 0) ||
+        (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
+        str.charAt(6) !== "m"
+      ) {
+        setSundayEveningError("Please follow the format eg. 08:00AM-10:00AM");
+      } else {
+        setSundayEveningError("");
+      }
+    }
     //credentials
     else if (name === "email") setEmail(trimmedValue);
     else if (name === "password") setPassword(trimmedValue);
@@ -131,7 +298,6 @@ const DoctorRegistrationForm = () => {
 
   const isValidate = () => {
     // if(confirmPassword.length === 0)
-
     password.length === confirmPassword.length && password === confirmPassword
       ? setPasswordError(false)
       : setPasswordError(true);
@@ -396,6 +562,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Mon Morning Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {mondayMorningError.length ? (
+            <div style={{ color: "red" }}>{mondayMorningError}</div>
+          ) : null}
           <label>Evening Slot : </label>
           <input
             type="text"
@@ -404,6 +573,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Mon Evening Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {mondayEveningError.length ? (
+            <div style={{ color: "red" }}>{mondayEveningError}</div>
+          ) : null}
           <h4>Tuesday : </h4>
           <label>Morning Slot : </label>
           <input
@@ -413,6 +585,9 @@ const DoctorRegistrationForm = () => {
             placeholder="tues Morning Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {tuesdayMorningError.length ? (
+            <div style={{ color: "red" }}>{tuesdayMorningError}</div>
+          ) : null}
           <label>Evening Slot : </label>
           <input
             type="text"
@@ -421,6 +596,9 @@ const DoctorRegistrationForm = () => {
             placeholder="tues Evening Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {tuesdayEveningError.length ? (
+            <div style={{ color: "red" }}>{tuesdayEveningError}</div>
+          ) : null}
           <h4>Wednesday : </h4>
           <label>Morning Slot : </label>
           <input
@@ -430,6 +608,9 @@ const DoctorRegistrationForm = () => {
             placeholder="wednesday Morning Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {wednesdayMorningError.length ? (
+            <div style={{ color: "red" }}>{wednesdayMorningError}</div>
+          ) : null}
           <label>Evening Slot : </label>
           <input
             type="text"
@@ -438,6 +619,9 @@ const DoctorRegistrationForm = () => {
             placeholder="wednesday Evening Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {wednesdayEveningError.length ? (
+            <div style={{ color: "red" }}>{wednesdayEveningError}</div>
+          ) : null}
           <h4>Thursday : </h4>
           <label>Morning Slot : </label>
           <input
@@ -447,6 +631,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Thursday Morning Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {thursdayMorningError.length ? (
+            <div style={{ color: "red" }}>{thursdayMorningError}</div>
+          ) : null}
           <label>Evening Slot : </label>
           <input
             type="text"
@@ -455,6 +642,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Thursday Evening Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {thursdayEveningError.length ? (
+            <div style={{ color: "red" }}>{thursdayEveningError}</div>
+          ) : null}
           <h4>Friday : </h4>
           <label>Morning Slot : </label>
           <input
@@ -464,6 +654,9 @@ const DoctorRegistrationForm = () => {
             placeholder="fri Morning Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {fridayMorningError.length ? (
+            <div style={{ color: "red" }}>{fridayMorningError}</div>
+          ) : null}
           <label>Evening Slot : </label>
           <input
             type="text"
@@ -472,6 +665,9 @@ const DoctorRegistrationForm = () => {
             placeholder="fri Evening Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {fridayEveningError.length ? (
+            <div style={{ color: "red" }}>{fridayEveningError}</div>
+          ) : null}
           <h4>Saturday : </h4>
           <label>Morning Slot : </label>
           <input
@@ -481,6 +677,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Satur Morning Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {saturdayMorningError.length ? (
+            <div style={{ color: "red" }}>{saturdayMorningError}</div>
+          ) : null}
           <label>Evening Slot : </label>
           <input
             type="text"
@@ -489,6 +688,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Satur Evening Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {saturdayEveningError.length ? (
+            <div style={{ color: "red" }}>{saturdayEveningError}</div>
+          ) : null}
           <h4>Sunday : </h4>
           <label>Morning Slot : </label>
           <input
@@ -498,6 +700,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Sun Morning Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {sundayMorningError.length ? (
+            <div style={{ color: "red" }}>{sundayMorningError}</div>
+          ) : null}
           <label>Evening Slot : </label>
           <input
             type="text"
@@ -506,6 +711,9 @@ const DoctorRegistrationForm = () => {
             placeholder="Sun Evening Slot"
             onChange={(e) => onChangeHandler(e)}
           />
+          {sundayEveningError.length ? (
+            <div style={{ color: "red" }}>{sundayEveningError}</div>
+          ) : null}
         </div>
         <div className={styles.formInput}>
           <label>Email Id : </label>
