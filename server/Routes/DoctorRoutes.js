@@ -23,12 +23,16 @@ router.get('/', (req,res) => {
 //desc:create a doctor acoount/register new doctor
 //METHOD:POST
 router.post('/register', (req,res) => {
+    const {name, highestDegree, speciality, number, experience, description } = req.body;
     //destructuring the req.body
-    const {name, highestDegree, speciality, number, experience, description, location} = req.body;
+    // const {name,highestDegree, number} = req.body;
+    //check whether any doctor with same name and number exists or not
+    //if exists send appropriate response to the frontend
+    //else create a new doctor object  and save it into the db and send appropriate response
     //create a new instance of the location model
-    const newLocation = new location({
+    // const newLocation = new location({
         
-    })
+    // })
     //create a new instance of the doctor model
     const doctor = new Doctor({
         name : name,
@@ -37,8 +41,13 @@ router.post('/register', (req,res) => {
         contactNumber : number,
         experience : experience,
         description: description
-    })
+    });
     //save the newly created object using mongoose native method
+    doctor.save().then(data => {
+        res.json(data);
+    }).catch(err => {
+        res.json(err);
+    });
 })
 
 module.exports = router;

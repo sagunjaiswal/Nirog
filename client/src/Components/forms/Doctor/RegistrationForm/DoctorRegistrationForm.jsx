@@ -11,7 +11,7 @@ const DoctorRegistrationForm = () => {
   const [experienceMonth, setExperienceMonth] = useState(0);
   const [experienceYear, setExperienceYear] = useState(0);
 
-  const [rating, setRating] = useState(0);
+  // const [rating, setRating] = useState(0);
 
   const [description, setDescription] = useState("");
 
@@ -128,7 +128,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "mondayEveningSlot") {
       setMorningEveningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -140,7 +140,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "tuesdayMorningSlot") {
       setTuesdayMorningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -152,7 +152,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "tuesdayEveningSlot") {
       setTuesdayEveningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -164,7 +164,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "wednesdayMorningSlot") {
       setWednesdayMorningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -178,7 +178,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "wednesdayEveningSlot") {
       setWednesdayEveningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -192,7 +192,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "thursdayMorningSlot") {
       setThursdayMorningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -204,7 +204,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "thursdayEveningSlot") {
       setThursdayEveningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -216,7 +216,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "fridayMorningSlot") {
       setFridayMorningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -228,7 +228,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "fridayEveningSlot") {
       setFridayEveningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -240,7 +240,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "saturdayMorningSlot") {
       setSaturdayMorningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -252,7 +252,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "saturdayEveningSlot") {
       setSaturdayEveningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -264,7 +264,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "sundayMorningSlot") {
       setSundayMorningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -276,7 +276,7 @@ const DoctorRegistrationForm = () => {
       }
     } else if (name === "sundayEveningSlot") {
       setSundayEveningSlot(trimmedValue);
-      var str = trimmedValue.toLowerCase();
+      str = trimmedValue.toLowerCase();
       if (
         (str.length !== 15 && str.length > 0) ||
         (str.charAt(5) !== "a" && str.charAt(5) !== "p") ||
@@ -292,16 +292,16 @@ const DoctorRegistrationForm = () => {
     else if (name === "password") setPassword(trimmedValue);
     else if (name === "confirmPassword") {
       setConfirmPassword(value);
-      isValidate();
+      // isValidate();
     }
   };
 
-  const isValidate = () => {
-    // if(confirmPassword.length === 0)
-    password.length === confirmPassword.length && password === confirmPassword
-      ? setPasswordError(false)
-      : setPasswordError(true);
-  };
+  // const isValidate = () => {
+  //   // if(confirmPassword.length === 0)
+  //   password.length === confirmPassword.length && password === confirmPassword
+  //     ? setPasswordError(false)
+  //     : setPasswordError(true);
+  // };
 
   // const onChange = (e) => {
   //   onChangeHandler(e);
@@ -315,48 +315,48 @@ const DoctorRegistrationForm = () => {
       name: doctorName,
       highestDegree: highestDegree,
       speciality: speciality,
-      number: number,
+      // number: number,
       experience: exp,
       description: description,
-      location: {
-        clinicName: clinicName,
-        streetName: streetName,
-        locality: locality,
-        landmark: landmark,
-        postOffice: postOffice,
-        pinCode: pinCode,
-        city: city,
-        district: district,
-        state: state,
-        time: {
-          mondayMorningSlot: mondayMorningSlot,
-          mondayEveningSlot: mondayEveningSlot,
-          tuesdayMorningSlot: tuesdayMorningSlot,
-          tuesdayEveningSlot: tuesdayEveningSlot,
-          wednesdayMorningSlot: wednesdayMorningSlot,
-          wednesdayEveningSlot: wednesdayEveningSlot,
-          thursdayMorningSlot: thursdayMorningSlot,
-          thursdayEveningSlot: thursdayEveningSlot,
-          fridayMorningSlot: fridayMorningSlot,
-          fridayEveningSlot: fridayEveningSlot,
-          saturdayMorningSlot: saturdayMorningSlot,
-          saturdayEveningSlot: saturdayEveningSlot,
-          sundayMorningSlot: sundayMorningSlot,
-          sundayEveningSlot: sundayEveningSlot,
-        },
-      },
+      // location: {
+      //   clinicName: clinicName,
+      //   streetName: streetName,
+      //   locality: locality,
+      //   landmark: landmark,
+      //   postOffice: postOffice,
+      //   pinCode: pinCode,
+      //   city: city,
+      //   district: district,
+      //   state: state,
+      //   time: {
+      //     mondayMorningSlot: mondayMorningSlot,
+      //     mondayEveningSlot: mondayEveningSlot,
+      //     tuesdayMorningSlot: tuesdayMorningSlot,
+      //     tuesdayEveningSlot: tuesdayEveningSlot,
+      //     wednesdayMorningSlot: wednesdayMorningSlot,
+      //     wednesdayEveningSlot: wednesdayEveningSlot,
+      //     thursdayMorningSlot: thursdayMorningSlot,
+      //     thursdayEveningSlot: thursdayEveningSlot,
+      //     fridayMorningSlot: fridayMorningSlot,
+      //     fridayEveningSlot: fridayEveningSlot,
+      //     saturdayMorningSlot: saturdayMorningSlot,
+      //     saturdayEveningSlot: saturdayEveningSlot,
+      //     sundayMorningSlot: sundayMorningSlot,
+      //     sundayEveningSlot: sundayEveningSlot,
+      //   },
+      // },
     };
-    if (isValidate(objToSend)) {
-      axios
-        .post("http://localhost:5000/doctor/", objToSend)
-        .then((res) => {
-          console.log(res.data);
-          console.log(objToSend);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    // if (isValidate(objToSend)) {
+    axios
+      .post("http://localhost:5000/doctor/register", objToSend)
+      .then((res) => {
+        console.log(res.data);
+        console.log(objToSend);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // }
   };
 
   return (
@@ -411,7 +411,9 @@ const DoctorRegistrationForm = () => {
             <option value="otolaryngologist">Otolaryngologist</option>
             <option value="orthopedist">Orthopedist</option>
             <option value="pediatrician">Pediatrician</option>
-            <option value="physician">Physician</option>
+            <option value="physician" selected>
+              Physician
+            </option>
             <option value="podiatrist">Podiatrist</option>
             <option value="psychiatrist">Psychiatrist</option>
             <option value="pulmonologist">Pulmonologist</option>
@@ -437,7 +439,7 @@ const DoctorRegistrationForm = () => {
             value={number}
             name="number"
             placeholder="Contact Number"
-            onChange={`(e) => onChangeHandler(e) ; (e) => isValidate(e)`}
+            onChange={(e) => onChangeHandler(e)}
             required
           />
         </div>
