@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./DoctorRegistrationForm.module.css";
 
@@ -8,8 +8,8 @@ const DoctorRegistrationForm = () => {
   const [speciality, setSpeciality] = useState("");
   const [number, setNumber] = useState("");
   //experience
-  const [experienceMonth, setExperienceMonth] = useState(0);
-  const [experienceYear, setExperienceYear] = useState(0);
+  const [experienceMonth, setExperienceMonth] = useState("");
+  const [experienceYear, setExperienceYear] = useState("");
 
   // const [rating, setRating] = useState(0);
 
@@ -48,6 +48,7 @@ const DoctorRegistrationForm = () => {
 
   //errors
   const [passwordError, setPasswordError] = useState(false);
+  const [numberError, setNumberError] = useState("");
   const [experienceError, setExperienceError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [mondayMorningError, setMondayMorningError] = useState("");
@@ -66,35 +67,43 @@ const DoctorRegistrationForm = () => {
   const [sundayEveningError, setSundayEveningError] = useState("");
 
   // useEffect(() => {
-  //   isValidate();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [confirmPassword]);
+  // }, [number]);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     const trimmedValue = value.trimLeft();
-    // console.log(name);
-    // console.log(value);
     if (name === "doctorName") setDoctorName(trimmedValue);
     else if (name === "highestDegree") setHighestDegree(trimmedValue);
-    else if (name === "speciality") {
-      setSpeciality(trimmedValue);
-    } else if (name === "number") {
-      if (trimmedValue.length) {
-        let num = Number(trimmedValue);
+    else if (name === "speciality") setSpeciality(trimmedValue);
+    else if (name === "number") {
+      console.log(value);
+      if (isNaN(value)) {
+        setNumberError("please enter numbers only");
+      } else if (number.length > 10) {
+        setNumberError("the number has to be of 10 digits only");
+      } else {
+        let numStr = "";
+        for (var i = 0; i < trimmedValue.length; i++) {
+          if (
+            trimmedValue.charAt(i) >= "0".charAt(0) &&
+            trimmedValue.charAt(i) <= "9".charAt(0)
+          ) {
+            numStr += trimmedValue.charAt(i);
+            console.log(true);
+          }
+        }
+        let num = Number(numStr);
         setNumber(num);
+        console.log("Number -> " + number);
       }
     } else if (name === "experienceMonth") {
-      // if (trimmedValue.length) {
+      setExperienceMonth(trimmedValue);
       let expMnth = Number(trimmedValue);
       if (expMnth > 11) {
         setExperienceError(true);
-        setExperienceMonth(expMnth);
       } else {
         setExperienceError(false);
-        setExperienceMonth(expMnth);
       }
-      // }
     } else if (name === "experienceYear") {
       if (trimmedValue.length) {
         let expYr = Number(trimmedValue);
@@ -367,7 +376,7 @@ const DoctorRegistrationForm = () => {
         onSubmit={(e) => submitHandler(e)}
       >
         <div className={styles.formControl}>
-          <label>Name : </label>
+          <label>Name * : </label>
           <input
             type="text"
             value={doctorName}
@@ -378,7 +387,7 @@ const DoctorRegistrationForm = () => {
           />
         </div>
         <div className={styles.formControl}>
-          <label>Highest Degree : </label>
+          <label>Highest Degree * : </label>
           <input
             type="text"
             value={highestDegree}
@@ -394,8 +403,10 @@ const DoctorRegistrationForm = () => {
             className="custom-select"
             name="speciality"
             onChange={(e) => onChangeHandler(e)}
-            required
           >
+            <option value="default" selected>
+              Choose...
+            </option>
             <option value="allergist">Allergist</option>
             <option value="anesthesiologist">Anesthesiologist</option>
             <option value="cardiologist">Cardiologist</option>
@@ -411,9 +422,7 @@ const DoctorRegistrationForm = () => {
             <option value="otolaryngologist">Otolaryngologist</option>
             <option value="orthopedist">Orthopedist</option>
             <option value="pediatrician">Pediatrician</option>
-            <option value="physician" selected>
-              Physician
-            </option>
+            <option value="physician">Physician</option>
             <option value="podiatrist">Podiatrist</option>
             <option value="psychiatrist">Psychiatrist</option>
             <option value="pulmonologist">Pulmonologist</option>
@@ -433,24 +442,29 @@ const DoctorRegistrationForm = () => {
           /> */}
         </div>
         <div className={styles.formControl}>
-          <label>Number : </label>
+          <label>Contact Number * : </label>
           <input
             type="text"
             value={number}
             name="number"
+            // pattern="[1-9]{1}[0-9]{9}"
             placeholder="Contact Number"
             onChange={(e) => onChangeHandler(e)}
             required
           />
+          {numberError.length ? (
+            <div style={{ color: "red" }}>{numberError}</div>
+          ) : null}
         </div>
         <div className={styles.formInput}>
-          <label>Experience : </label>
+          <label>Experience * : </label>
           <input
             type="text"
             value={experienceYear}
             name="experienceYear"
             placeholder="Years"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
           <input
             type="text"
@@ -458,6 +472,7 @@ const DoctorRegistrationForm = () => {
             name="experienceMonth"
             placeholder="Months"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
           {experienceError ? (
             <div style={{ color: "red" }}>
@@ -480,7 +495,7 @@ const DoctorRegistrationForm = () => {
         </div>
         <div className={styles.formInput}>
           <h2>Address : </h2>
-          <lable>Clinic Name : </lable>
+          <lable>Clinic Name * : </lable>
           <input
             type="text"
             value={clinicName}
@@ -488,21 +503,23 @@ const DoctorRegistrationForm = () => {
             placeholder="clinic name"
             onChange={(e) => onChangeHandler(e)}
           />
-          <label>Street Name : </label>
+          <label>Street Name * : </label>
           <input
             type="text"
             value={streetName}
             name="streetName"
             placeholder="Street Name"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
-          <label>Locality : </label>
+          <label>Locality * : </label>
           <input
             type="text"
             value={locality}
             name="locality"
             placeholder="Your Locality"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
           <label>Land Mark : </label>
           <input
@@ -512,45 +529,50 @@ const DoctorRegistrationForm = () => {
             placeholder="Land Mark(if any)"
             onChange={(e) => onChangeHandler(e)}
           />
-          <label>Post Office : </label>
+          <label>Post Office * : </label>
           <input
             type="text"
             value={postOffice}
             name="postOffice"
             placeholder="Post Office"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
-          <label>Pin Code : </label>
+          <label>Pin Code * : </label>
           <input
             type="text"
             value={pinCode}
             name="pinCode"
             placeholder="Pin Code"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
-          <label>City/Town : </label>
+          <label>City/Town * : </label>
           <input
             type="text"
             value={city}
             name="city"
             placeholder="City/Town"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
-          <label>District : </label>
+          <label>District * : </label>
           <input
             type="text"
             value={district}
             name="district"
             placeholder="District"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
-          <label>State : </label>
+          <label>State * : </label>
           <input
             type="text"
             value={state}
             name="state"
             placeholder="state"
             onChange={(e) => onChangeHandler(e)}
+            required
           />
         </div>
         <div className={styles.formInput}>
@@ -718,7 +740,7 @@ const DoctorRegistrationForm = () => {
           ) : null}
         </div>
         <div className={styles.formInput}>
-          <label>Email Id : </label>
+          <label>Email Id * : </label>
           <input
             type="email"
             value={email}
@@ -729,7 +751,7 @@ const DoctorRegistrationForm = () => {
           />
         </div>
         <div className={styles.formInput}>
-          <label>Password : </label>
+          <label>Password * : </label>
           <input
             type="password"
             value={password}
@@ -740,7 +762,7 @@ const DoctorRegistrationForm = () => {
           />
         </div>
         <div className={styles.formInput}>
-          <label>Confirm Password : </label>
+          <label>Confirm Password * : </label>
           <input
             type="confirmPassword"
             value={confirmPassword}

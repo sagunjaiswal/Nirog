@@ -4,8 +4,7 @@ Content-Type: application/json
 {
     "name" : "test",
     "highestDegree": "highestDegree",
-    "speciality": "speciality",
-    
+    "speciality": "speciality",    
     "experience" : "5yrs7mnths",
     "description": "description"
 }
