@@ -1,23 +1,15 @@
 import React from "react";
 import styles from "./App.module.css";
-//module import begins
+import Routes from "./Routes/Routes";
 import Application from "./Containers/App/Application";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+
 const App = () => {
   return (
-    <Router>
-    <div className={styles.AppContainer}>
-      <Application />
+    <div className={styles.pageContainer}>
+      <Routes>
+        <Application />
+      </Routes>
     </div>
-    <Switch>
-      {/* <Route path="/" exact component={Application} /> */}
-     </Switch>
-    </Router>
   );
 };
 
