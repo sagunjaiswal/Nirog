@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import DoctorLoginForm from "../../Components/forms/Doctor/LoginForm/DoctorLoginForm";
-import { loginFormValidator } from "../../helperMethods";
+import { loginFormSubmitHandler } from "../../helperMethods";
 
 const LoginPage = () => {
   const [validationError, setValidationError] = useState(null);
   const __formSubmitHandler = (loginData) => {
-    setValidationError(loginFormValidator(loginData.password)); //validate password
-
     //call formSubmitHandler
+    loginFormSubmitHandler();
   };
   return (
     <div className={styles.loginFormContainer}>
