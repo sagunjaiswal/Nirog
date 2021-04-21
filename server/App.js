@@ -41,17 +41,18 @@ app.use((req, res, next) => {
 
 //route import
 const doctorRoute = require("./Routes/DoctorRoutes");
+const locationRoute = require("./Routes/LocationRoutes");
+const timeRoute = require("./Routes/TimeRoutes");
 
 //routes
-app.use('/doctor', doctorRoute);
+app.use("/doctor", doctorRoute);
+app.use("/location", locationRoute);
+app.use("/timeSlots", timeRoute);
 
-
-
-app.use('/' , (req,res,next)=> {
-  console.log('In the home route');
-  res.json('In the home route');
+app.use("/", (req, res, next) => {
+  console.log("In the home route");
+  res.json("In the home route");
   next();
-})
-
+});
 
 module.exports = app;

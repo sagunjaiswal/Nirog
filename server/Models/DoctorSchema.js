@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// const LocationSchema = require("./LocationSchema");
+const LocationSchema = require("./LocationSchema");
 
 const doctorSchema = new mongoose.Schema({
     name : { 
@@ -14,8 +14,9 @@ const doctorSchema = new mongoose.Schema({
         type: String,
     },
     // contactNumber : { 
-    //     type: Number,
-    //     required: true
+    //     type: String,
+    //     required: true,
+    //         unique: true
     // },
     experience: {
         type : String,
@@ -28,10 +29,20 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // location : [{
-    //     type :mongoose.Schema.Types.ObjectId,
-    //     ref : LocationSchema
-    // }]
+    location : [{
+        type :mongoose.Schema.Types.ObjectId,
+        ref : LocationSchema
+    }],
+    email : {
+        type: String,
+        required : true,
+        unique: true
+    },
+    password : {
+        type : String,
+        required : true,
+        unique: true
+    }
 })
 
 module.exports = Doctor = mongoose.model('doctor', doctorSchema);
