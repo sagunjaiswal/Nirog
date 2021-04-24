@@ -1,22 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Doctor = require("../Models/DoctorSchema");
-const location = require("../Models/LocationSchema");
+const Location = require("../Models/LocationSchema");
+const TimeSchema = require("../Models/TimeSchema");
 
 //desc:route for getting the list of all doctors
 //method:GET
-
 router.get("/", (req, res) => {
-  // Doctor.countDocuments({}, (err,count) => {
-  //     if (err) return res.status(400).json({count: null})
-  //     return res.status(200).json({
-  //         count:count
-  //     });
-  // })
   res.status(201).json({
     msg: "This is the home route for doctor model",
-  }); //delete this line
-  console.log(req.body); //delete this line
+  });
 });
 
 //desc:create a doctor acoount/register new doctor
@@ -33,38 +26,125 @@ router.post("/register", (req, res) => {
     email,
     password,
   } = req.body;
+  const {
+    clinicName,
+    streetName,
+    locality,
+    landmark,
+    postOffice,
+    pinCode,
+    city,
+    district,
+    state,
+  } = location;
+  //check whether the location exists or not
+  Location.findOne({
+    clinicName: clinicName,
+    streetName: streetName,
+    pinCode: pinCode,
+  })
+    .exec()
+    .then((clinic) => {
+      if (clinic) {
+        console.log("Clinic Exists");
+        //appropriate code to send meaningful response to the doctorRoute
+      } else {
+        console.log("Clinic doesnt exist");
 
-  //destructuring the req.body
-  // const {name,highestDegree, number} = req.body;
-  //check whether any doctor with same name and number exists or not
-  //if exists send appropriate response to the frontend
-  //else create a new doctor object  and save it into the db and send appropriate response
-  //create a new instance of the location model
-  // const newLocation = new location({
+        //create time object and get the _id of that time object
+        const {
+          mondayMorningSlot,
+          mondayEveningSlot,
+          tuesdayMorningSlot,
+          tuesdayEveningSlot,
+          wednesdayMorningSlot,
+          wednesdayEveningSlot,
+          thursdayMorningSlot,
+          thursdayEveningSlot,
+          fridayMorningSlot,
+          fridayEveningSlot,
+          saturdayMorningSlot,
+          saturdayEveningSlot,
+          sundayMorningSlot,
+          sundayEveningSlot,
+        } = location.time;
 
-  // })
-  //create a new instance of the doctor model
-
-  const doctor = new Doctor({
-    name: name,
-    highestDegree: highestDegree,
-    speciality: speciality,
-    // contactNumber : number,
-    experience: experience,
-    description: description,
-    // location:    ,
-    email: email,
-    password: password,
-  });
-  //save the newly created object using mongoose native method
-  doctor
-    .save()
-    .then((data) => {
-      res.json(data);
+        const timeSlots = new TimeSchema({
+          mondayMorningSlot: mondayMorningSlot,
+          mondayEveningSlot: mondayEveningSlot,
+          tuesdayMorningSlot: tuesdayMorningSlot,
+          tuesdayEveningSlot: tuesdayEveningSlot,
+          wednesdayMorningSlot: wednesdayMorningSlot,
+          wednesdayEveningSlot: wednesdayEveningSlot,
+          thursdayMorningSlot: thursdayMorningSlot,
+          thursdayEveningSlot: thursdayEveningSlot,
+          fridayMorningSlot: fridayMorningSlot,
+          fridayEveningSlot: fridayEveningSlot,
+          saturdayMorningSlot: saturdayMorningSlot,
+          saturdayEveningSlot: saturdayEveningSlot,
+          sundayMorningSlot: sundayMorningSlot,
+          sundayEveningSlot: sundayEveningSlot,
+        });
+        timeSlots
+          .save()
+          .then((time) => {
+            const newLocation = new Location({
+              clinicName: clinicName,
+              streetName: streetName,
+              locality: locality,
+              landmark: landmark,
+              postOffice: postOffice,
+              pinCode: pinCode,
+              city: city,
+              district: district,
+              state: state,
+              time: time,
+            });
+            newLocation
+              .save()
+              .then((locationData) => {
+                const doctor = new Doctor({
+                  name: name,
+                  highestDegree: highestDegree,
+                  speciality: speciality,
+                  // contactNumber : number,
+                  experience: experience,
+                  description: description,
+                  location: [locationData._id],
+                  email: email,
+                  password: password,
+                });
+                //save the newly created object using mongoose native method
+                doctor
+                  .save()
+                  .then((data) => {
+                    res.json(data);
+                  })
+                  .catch((err) => {
+                    res.json(err);
+                  });
+                // });
+              })
+              .catch((err) => {
+                return res.status(400).json({
+                  info: "location cant be added!!",
+                  error: err,
+                });
+              });
+          })
+          .catch((err) => {
+            console.log(
+              "🚀 ~ file: TimeRoutes.js ~ line 44 ~ timeStamps.save ~ err",
+              err
+            );
+          });
+      }
     })
     .catch((err) => {
-      res.json(err);
+      console.log(
+        "🚀 ~ file: LocationRoutes.js ~ line 41 ~ router.post ~ err",
+        err
+      );
     });
 });
-
 module.exports = router;

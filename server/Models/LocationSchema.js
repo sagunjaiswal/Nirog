@@ -40,6 +40,7 @@ const locationSchema = new mongoose.Schema({
   time: {
     type: mongoose.Schema.Types.ObjectId,
     ref: TimeSchema,
+    required: true,
   },
 });
 

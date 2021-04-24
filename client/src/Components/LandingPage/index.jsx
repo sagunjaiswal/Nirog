@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Accordion from "../../Components/faqs/Accordion";
+import DoctorCategoryCard from "../../Components/Cards/DoctorCategoryCard";
 
 const LandingPage = () => {
   return (
@@ -12,6 +13,7 @@ const LandingPage = () => {
       <Link to="/doctor-login">
         <button>DOCTOR LOGIN FORM</button>
       </Link>
+      <DoctorCategoryCard />
       <Accordion />
     </div>
   );

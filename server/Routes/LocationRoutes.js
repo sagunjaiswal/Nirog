@@ -1,4 +1,8 @@
 const Location = require("../Models/LocationSchema");
+const TimeSchema = require("../Models/TimeSchema");
+
+//custom middleware import
+const timeSlotCreator = require("../middleware/customMiddleware");
 
 //import express router
 const router = require("express").Router();
@@ -47,37 +51,86 @@ router.post("/", (req, res) => {
         //appropriate code to send meaningful response to the doctorRoute
       } else {
         console.log("Clinic doesnt exist");
+
         //create time object and get the _id of that time object
+        const {
+          mondayMorningSlot,
+          mondayEveningSlot,
+          tuesdayMorningSlot,
+          tuesdayEveningSlot,
+          wednesdayMorningSlot,
+          wednesdayEveningSlot,
+          thursdayMorningSlot,
+          thursdayEveningSlot,
+          fridayMorningSlot,
+          fridayEveningSlot,
+          saturdayMorningSlot,
+          saturdayEveningSlot,
+          sundayMorningSlot,
+          sundayEveningSlot,
+        } = req.body.time;
 
-        const newLocation = new Location({
-          clinicName: clinicName,
-          streetName: streetName,
-          locality: locality,
-          landmark: landmark,
-          postOffice: postOffice,
-          pinCode: pinCode,
-          city: city,
-          district: district,
-          state: state,
+        const timeSlots = new TimeSchema({
+          mondayMorningSlot: mondayMorningSlot,
+          mondayEveningSlot: mondayEveningSlot,
+          tuesdayMorningSlot: tuesdayMorningSlot,
+          tuesdayEveningSlot: tuesdayEveningSlot,
+          wednesdayMorningSlot: wednesdayMorningSlot,
+          wednesdayEveningSlot: wednesdayEveningSlot,
+          thursdayMorningSlot: thursdayMorningSlot,
+          thursdayEveningSlot: thursdayEveningSlot,
+          fridayMorningSlot: fridayMorningSlot,
+          fridayEveningSlot: fridayEveningSlot,
+          saturdayMorningSlot: saturdayMorningSlot,
+          saturdayEveningSlot: saturdayEveningSlot,
+          sundayMorningSlot: sundayMorningSlot,
+          sundayEveningSlot: sundayEveningSlot,
         });
+        console.log(
+          "🚀 ~ file: LocationRoutes.js ~ line 88 ~ .then ~ timeSlots",
+          timeSlots
+        );
 
-        newLocation
+        timeSlots
           .save()
-          .then((locationData) => {
-            console.log(
-              "🚀 ~ file: LocationRoutes.js ~ line 52 ~ .then ~ locationData",
-              locationData
-            );
-            return res.status(201).json({
-              info: "Location added successfully",
-              locationId: locationData._id,
+          .then((time) => {
+            const newLocation = new Location({
+              clinicName: clinicName,
+              streetName: streetName,
+              locality: locality,
+              landmark: landmark,
+              postOffice: postOffice,
+              pinCode: pinCode,
+              city: city,
+              district: district,
+              state: state,
+              time: time,
             });
+
+            newLocation
+              .save()
+              .then((locationData) => {
+                console.log(
+                  "🚀 ~ file: LocationRoutes.js ~ line 52 ~ .then ~ locationData",
+                  locationData
+                );
+                return res.status(201).json({
+                  info: "Location added successfully",
+                  locationId: locationData._id,
+                });
+              })
+              .catch((err) => {
+                return res.status(400).json({
+                  info: "location cant be added!!",
+                  error: err,
+                });
+              });
           })
           .catch((err) => {
-            return res.status(400).json({
-              info: "location cant be added!!",
-              error: err,
-            });
+            console.log(
+              "🚀 ~ file: TimeRoutes.js ~ line 44 ~ timeStamps.save ~ err",
+              err
+            );
           });
       }
     })
@@ -88,5 +141,4 @@ router.post("/", (req, res) => {
       );
     });
 });
-
 module.exports = router;
