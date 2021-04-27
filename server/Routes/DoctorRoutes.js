@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 const Doctor = require("../Models/DoctorSchema");
 const Location = require("../Models/LocationSchema");
 const TimeSchema = require("../Models/TimeSchema");
@@ -112,7 +113,7 @@ router.post("/register", (req, res) => {
                   description: description,
                   location: [locationData._id],
                   email: email,
-                  password: password,
+                  password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
                 });
                 //save the newly created object using mongoose native method
                 doctor
