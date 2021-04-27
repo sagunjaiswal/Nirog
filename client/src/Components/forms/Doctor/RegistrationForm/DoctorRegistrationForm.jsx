@@ -327,35 +327,35 @@ const DoctorRegistrationForm = () => {
       number: number,
       experience: exp,
       description: description,
-      email: email,
-      password: password,
       location: {
         clinicName: clinicName,
         streetName: streetName,
         locality: locality,
         landmark: landmark,
-        //   postOffice: postOffice,
-        //   pinCode: pinCode,
-        //   city: city,
-        //   district: district,
-        //   state: state,
-        //   time: {
-        //     mondayMorningSlot: mondayMorningSlot,
-        //     mondayEveningSlot: mondayEveningSlot,
-        //     tuesdayMorningSlot: tuesdayMorningSlot,
-        //     tuesdayEveningSlot: tuesdayEveningSlot,
-        //     wednesdayMorningSlot: wednesdayMorningSlot,
-        //     wednesdayEveningSlot: wednesdayEveningSlot,
-        //     thursdayMorningSlot: thursdayMorningSlot,
-        //     thursdayEveningSlot: thursdayEveningSlot,
-        //     fridayMorningSlot: fridayMorningSlot,
-        //     fridayEveningSlot: fridayEveningSlot,
-        //     saturdayMorningSlot: saturdayMorningSlot,
-        //     saturdayEveningSlot: saturdayEveningSlot,
-        //     sundayMorningSlot: sundayMorningSlot,
-        //     sundayEveningSlot: sundayEveningSlot,
-        // },
+        postOffice: postOffice,
+        pinCode: pinCode,
+        city: city,
+        district: district,
+        state: state,
+        time: {
+          mondayMorningSlot: mondayMorningSlot,
+          mondayEveningSlot: mondayEveningSlot,
+          tuesdayMorningSlot: tuesdayMorningSlot,
+          tuesdayEveningSlot: tuesdayEveningSlot,
+          wednesdayMorningSlot: wednesdayMorningSlot,
+          wednesdayEveningSlot: wednesdayEveningSlot,
+          thursdayMorningSlot: thursdayMorningSlot,
+          thursdayEveningSlot: thursdayEveningSlot,
+          fridayMorningSlot: fridayMorningSlot,
+          fridayEveningSlot: fridayEveningSlot,
+          saturdayMorningSlot: saturdayMorningSlot,
+          saturdayEveningSlot: saturdayEveningSlot,
+          sundayMorningSlot: sundayMorningSlot,
+          sundayEveningSlot: sundayEveningSlot,
+        },
       },
+      email: email,
+      password: password,
     };
     // if (isValidate(objToSend)) {
     axios
@@ -366,6 +366,7 @@ const DoctorRegistrationForm = () => {
       })
       .catch((err) => {
         console.log(err);
+        console.log(objToSend);
       });
     // }
   };

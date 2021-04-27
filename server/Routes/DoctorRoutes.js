@@ -17,26 +17,26 @@ router.get("/", (req, res) => {
 //METHOD:POST
 router.post("/register", (req, res) => {
   const {
-    name,
-    highestDegree,
-    speciality,
-    number,
-    experience,
     description,
+    experience,
+    highestDegree,
     location,
+    name,
+    number,
+    speciality,
     email,
     password,
   } = req.body;
   const {
-    clinicName,
-    streetName,
-    locality,
-    landmark,
-    postOffice,
-    pinCode,
     city,
+    clinicName,
     district,
+    landmark,
+    locality,
+    pinCode,
+    postOffice,
     state,
+    streetName,
   } = location;
   //check whether the location exists or not
   Location.findOne({
@@ -54,20 +54,20 @@ router.post("/register", (req, res) => {
 
         //create time object and get the _id of that time object
         const {
-          mondayMorningSlot,
-          mondayEveningSlot,
-          tuesdayMorningSlot,
-          tuesdayEveningSlot,
-          wednesdayMorningSlot,
-          wednesdayEveningSlot,
-          thursdayMorningSlot,
-          thursdayEveningSlot,
-          fridayMorningSlot,
           fridayEveningSlot,
-          saturdayMorningSlot,
+          fridayMorningSlot,
+          mondayEveningSlot,
+          mondayMorningSlot,
           saturdayEveningSlot,
-          sundayMorningSlot,
+          saturdayMorningSlot,
           sundayEveningSlot,
+          sundayMorningSlot,
+          tuesdayEveningSlot,
+          tuesdayMorningSlot,
+          thursdayEveningSlot,
+          thursdayMorningSlot,
+          wednesdayEveningSlot,
+          wednesdayMorningSlot,
         } = location.time;
 
         const timeSlots = new TimeSchema({
