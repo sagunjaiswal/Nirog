@@ -108,7 +108,7 @@ router.post("/register", (req, res) => {
                   name: name,
                   highestDegree: highestDegree,
                   speciality: speciality,
-                  // contactNumber : number,
+                  number: number,
                   experience: experience,
                   description: description,
                   location: [locationData._id],
