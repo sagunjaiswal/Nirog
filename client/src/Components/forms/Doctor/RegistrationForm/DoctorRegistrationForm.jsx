@@ -66,8 +66,12 @@ const DoctorRegistrationForm = () => {
   const [sundayMorningError, setSundayMorningError] = useState("");
   const [sundayEveningError, setSundayEveningError] = useState("");
 
-  // useEffect(() => {
-  // }, [number]);
+  // useEffect(
+  //   (e) => {
+  //     handleValueChange(e);
+  //   },
+  //   [confirmPassword]
+  // );
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -301,9 +305,17 @@ const DoctorRegistrationForm = () => {
     else if (name === "password") setPassword(trimmedValue);
     else if (name === "confirmPassword") {
       setConfirmPassword(value);
+      if (password !== confirmPassword) setPasswordError(true);
+      else setPasswordError(false);
       // isValidate();
     }
   };
+
+  // const handleValueChange = (e) => {
+  //   setConfirmPassword(e.target.value);
+  //   if (password !== confirmPassword) setPasswordError(true);
+  //   else setPasswordError(false);
+  // };
 
   // const isValidate = () => {
   //   // if(confirmPassword.length === 0)
@@ -434,15 +446,6 @@ const DoctorRegistrationForm = () => {
             <option value="surgeon">Surgeon</option>
             <option value="urologist">Urologist</option>
           </select>
-          {/* 
-          <input
-            type="text"
-            value={speciality}
-            name="speciality"
-            placeholder="Speciality"
-            onChange={(e) => onChangeHandler(e)}
-            required
-          /> */}
         </div>
         <div className={styles.formControl}>
           <label>Contact Number * : </label>
@@ -767,7 +770,7 @@ const DoctorRegistrationForm = () => {
         <div className={styles.formInput}>
           <label>Confirm Password * : </label>
           <input
-            type="confirmPassword"
+            type="password"
             value={confirmPassword}
             name="confirmPassword"
             placeholder="Confirm Password"

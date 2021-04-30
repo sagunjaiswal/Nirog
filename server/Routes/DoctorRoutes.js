@@ -47,11 +47,10 @@ router.post("/register", (req, res) => {
     .exec()
     .then((clinic) => {
       if (clinic) {
-        console.log("Clinic Exists");
-        //appropriate code to send meaningful response to the doctorRoute
+        return res.status(400).json({
+          msg: "Clinic already exists!",
+        });
       } else {
-        console.log("Clinic doesnt exist");
-
         //create time object and get the _id of that time object
         const {
           fridayEveningSlot,
@@ -103,7 +102,18 @@ router.post("/register", (req, res) => {
             });
             newLocation
               .save()
-              .then((locationData) => {
+              .then(async (locationData) => {
+                const existingEmail = await Doctor.findOne({ email: email });
+                if (existingEmail)
+                  return res.status(400).json({
+                    msg: "An account with this email already exists!",
+                  });
+                const existingNumber = await Doctor.findOne({ number: number });
+                if (existingNumber) {
+                  return res.status(400).json({
+                    msg: "This number was already registered earlier!",
+                  });
+                }
                 const doctor = new Doctor({
                   name: name,
                   highestDegree: highestDegree,
@@ -115,6 +125,7 @@ router.post("/register", (req, res) => {
                   email: email,
                   password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
                 });
+
                 //save the newly created object using mongoose native method
                 doctor
                   .save()
@@ -125,6 +136,7 @@ router.post("/register", (req, res) => {
                     res.json(err);
                   });
                 // });
+                // }
               })
               .catch((err) => {
                 return res.status(400).json({
