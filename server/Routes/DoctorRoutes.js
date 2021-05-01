@@ -47,7 +47,7 @@ router.post("/register", (req, res) => {
     .exec()
     .then((clinic) => {
       if (clinic) {
-        return res.status(400).json({
+        return res.status(409).json({
           msg: "Clinic already exists!",
         });
       } else {
@@ -105,12 +105,12 @@ router.post("/register", (req, res) => {
               .then(async (locationData) => {
                 const existingEmail = await Doctor.findOne({ email: email });
                 if (existingEmail)
-                  return res.status(400).json({
+                  return res.status(409).json({
                     msg: "An account with this email already exists!",
                   });
                 const existingNumber = await Doctor.findOne({ number: number });
                 if (existingNumber) {
-                  return res.status(400).json({
+                  return res.status(409).json({
                     msg: "This number was already registered earlier!",
                   });
                 }
@@ -130,7 +130,9 @@ router.post("/register", (req, res) => {
                 doctor
                   .save()
                   .then((data) => {
-                    res.json(data);
+                    return res.status(201).json({
+                      info: "Doctor is Successfully registered!",
+                    });
                   })
                   .catch((err) => {
                     res.json(err);
@@ -146,18 +148,15 @@ router.post("/register", (req, res) => {
               });
           })
           .catch((err) => {
-            console.log(
-              "🚀 ~ file: TimeRoutes.js ~ line 44 ~ timeStamps.save ~ err",
-              err
-            );
+            return res.status(400).json({
+              info: "time stamps cant be added!!",
+              error: err,
+            });
           });
       }
     })
     .catch((err) => {
-      console.log(
-        "🚀 ~ file: LocationRoutes.js ~ line 41 ~ router.post ~ err",
-        err
-      );
+      console.log(err);
     });
 });
 module.exports = router;

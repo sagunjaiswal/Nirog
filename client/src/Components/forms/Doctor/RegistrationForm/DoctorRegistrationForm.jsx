@@ -66,6 +66,8 @@ const DoctorRegistrationForm = () => {
   const [sundayMorningError, setSundayMorningError] = useState("");
   const [sundayEveningError, setSundayEveningError] = useState("");
 
+  const [backendError, setBackendError] = useState("");
+
   // useEffect(
   //   (e) => {
   //     handleValueChange(e);
@@ -369,7 +371,7 @@ const DoctorRegistrationForm = () => {
       email: email,
       password: password,
     };
-    // if (isValidate(objToSend)) {
+
     axios
       .post("http://localhost:5000/doctor/register", objToSend)
       .then((res) => {
@@ -378,9 +380,8 @@ const DoctorRegistrationForm = () => {
       })
       .catch((err) => {
         console.log(err);
-        console.log(objToSend);
+        err.response.data.msg && setBackendError(err.response.data.msg);
       });
-    // }
   };
 
   return (
@@ -782,6 +783,9 @@ const DoctorRegistrationForm = () => {
           <div style={{ color: "red" }}>Passwords dont match</div>
         ) : null}
         <button type="submit">SUBMIT</button>
+        {backendError.length ? (
+          <p style={{ color: "red" }}>Error : {backendError}</p>
+        ) : null}
       </form>
     </div>
   );
