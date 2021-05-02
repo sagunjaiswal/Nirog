@@ -86,10 +86,10 @@ router.post("/", (req, res) => {
           sundayMorningSlot: sundayMorningSlot,
           sundayEveningSlot: sundayEveningSlot,
         });
-        console.log(
-          "🚀 ~ file: LocationRoutes.js ~ line 88 ~ .then ~ timeSlots",
-          timeSlots
-        );
+        // console.log(
+        //   "🚀 ~ file: LocationRoutes.js ~ line 88 ~ .then ~ timeSlots",
+        //   timeSlots
+        // );
 
         timeSlots
           .save()

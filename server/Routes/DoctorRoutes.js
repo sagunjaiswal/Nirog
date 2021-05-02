@@ -114,6 +114,7 @@ router.post("/register", (req, res) => {
                     msg: "This number was already registered earlier!",
                   });
                 }
+
                 const doctor = new Doctor({
                   name: name,
                   highestDegree: highestDegree,
@@ -126,17 +127,25 @@ router.post("/register", (req, res) => {
                   password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
                 });
 
-                //save the newly created object using mongoose native method
-                doctor
-                  .save()
-                  .then((data) => {
-                    return res.status(201).json({
-                      info: "Doctor is Successfully registered!",
-                    });
-                  })
-                  .catch((err) => {
-                    res.json(err);
+                bcrypt.genSalt(10, (err, salt) => {
+                  bcrypt.hash(doctor.password, salt, (err, hash) => {
+                    if (err) throw err;
+                    doctor.password = hash;
+                    doctor
+                      .save()
+                      .then((data) => {
+                        // res.redirect("/login");
+                        return res.status(201).json({
+                          info: "Doctor is Successfully registered!",
+                        });
+                      })
+                      .catch((err) => {
+                        res.json(err);
+                      });
                   });
+                });
+                //save the newly created object using mongoose native method
+
                 // });
                 // }
               })

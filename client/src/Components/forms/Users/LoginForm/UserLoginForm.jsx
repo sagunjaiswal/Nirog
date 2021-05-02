@@ -46,3 +46,4 @@ const UserLoginForm = () => {
     </form>
   );
 };
+export default UserLoginForm;

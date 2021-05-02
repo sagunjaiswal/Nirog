@@ -13,6 +13,14 @@ const LandingPage = () => {
       <Link to="/doctor-login">
         <button>DOCTOR LOGIN FORM</button>
       </Link>
+      <br />
+      <Link to="/user-registration">
+        <button>USER REGISTRATION FORM</button>
+      </Link>
+      <br />
+      <Link to="/user-login">
+        <button>USER LOGIN FORM</button>
+      </Link>
       <DoctorCategoryCard />
       <Accordion />
     </div>
