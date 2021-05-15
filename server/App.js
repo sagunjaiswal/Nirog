@@ -5,8 +5,8 @@ const flash = require("connect-flash");
 const session = require("express-session");
 
 //passsport config
-const passport = require("passport");
-require("./Routes/passport")(passport);
+// const passport = require("passport");
+// require("./Routes/passport")(passport);
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -55,8 +55,8 @@ app.use(
 );
 
 //passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 //connect flash
 app.use(flash());
