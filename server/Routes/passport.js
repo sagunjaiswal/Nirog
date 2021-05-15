@@ -70,5 +70,8 @@ module.exports = function (passport) {
       done(err, user);
     });
   });
+<<<<<<< HEAD
 >>>>>>> ffe608c4cc38379015444de91fbb6a1789235bf9
+=======
+>>>>>>> origin/master
 };
