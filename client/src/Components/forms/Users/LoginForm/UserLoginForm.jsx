@@ -17,7 +17,7 @@ const UserLoginForm = () => {
       password: password,
     };
     axios
-      .post("", objToSend)
+      .post("http://localhost:5000/user/login", objToSend)
       .then((res) => {
         console.log(res.data);
         console.log(objToSend);
@@ -30,7 +30,9 @@ const UserLoginForm = () => {
     <form onSubmit={(e) => onSubmitHandler(e)}>
       <label>Enter email id :</label>
       <input
-        type="text"
+        type="email"
+        name="email"
+        value={email}
         placeholder="email"
         onChange={(e) => onChangeHandler(e)}
         required
@@ -38,6 +40,8 @@ const UserLoginForm = () => {
       <label>Password : </label>
       <input
         type="password"
+        name="password"
+        value={password}
         placeholder="password"
         onChange={(e) => onChangeHandler(e)}
         required
@@ -46,3 +50,4 @@ const UserLoginForm = () => {
     </form>
   );
 };
+export default UserLoginForm;

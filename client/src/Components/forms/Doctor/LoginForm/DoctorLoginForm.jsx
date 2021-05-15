@@ -24,6 +24,7 @@ const DoctorLoginForm = () => {
       })
       .catch((err) => {
         console.log(err);
+        console.log(objToSend);
       });
   };
   return (
@@ -32,6 +33,8 @@ const DoctorLoginForm = () => {
         <label>Enter email id :</label>
         <input
           type="text"
+          name="email"
+          value={email}
           placeholder="email"
           onChange={(e) => onChangeHandler(e)}
           required
@@ -39,6 +42,8 @@ const DoctorLoginForm = () => {
         <label>Password : </label>
         <input
           type="password"
+          name="password"
+          value={password}
           placeholder="password"
           onChange={(e) => onChangeHandler(e)}
           required
