@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const Doctor = require("../Models/DoctorSchema");
 const Location = require("../Models/LocationSchema");
 const TimeSchema = require("../Models/TimeSchema");
+const passport = require("passport");
 
 //desc:route for getting the list of all doctors
 //method:GET
@@ -134,6 +135,10 @@ router.post("/register", (req, res) => {
                     doctor
                       .save()
                       .then((data) => {
+                        req.flash(
+                          "sucess_msg",
+                          "You are now registered and can log in"
+                        );
                         // res.redirect("/login");
                         return res.status(201).json({
                           info: "Doctor is Successfully registered!",
@@ -168,4 +173,14 @@ router.post("/register", (req, res) => {
       console.log(err);
     });
 });
+
+//login
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/users/login",
+    failureFlash: true,
+  })(req, res, next);
+});
+
 module.exports = router;
