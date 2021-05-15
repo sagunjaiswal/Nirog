@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Footer.module.css";
 import SocialButtonsContainer from "react-social-media-buttons";
 
 export default function Footer() {
+  const [contactUsEmail, setContactusEmail] = useState("");
+  const [contactUsMessage, setContactUsMessage] = useState("");
+  const [contactUsStatus, setContactUsStatus] = useState(false);
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    if (name === "contactUsEmail") setContactusEmail(value);
+    else if (name === "contactUsMessage") setContactUsMessage(value);
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const contactUsObjToBeSent = {
+      email: contactUsEmail,
+      message: contactUsMessage,
+    };
+    console.log(contactUsObjToBeSent);
+  };
+
   return (
     <>
       <div className={styles.mainFooter}>
@@ -54,17 +73,32 @@ export default function Footer() {
         <div className={styles.subFooter}>
           <h2>Contact Us</h2>
           <div className={styles.content}>
-            <form action="#">
+            <form onSubmit={(e) => onSubmitHandler(e)}>
               <div className={styles.email}>
                 <div className={styles.text}>Email *</div>
-                <input type="email" required />
+                <input
+                  type="email"
+                  name="contactUsEmail"
+                  value={contactUsEmail}
+                  onChange={(e) => onChangeHandler(e)}
+                  required
+                />
               </div>
               <div className={styles.msg}>
                 <div className={styles.text}>Message *</div>
-                <textarea rows="2" cols="25" required></textarea>
+                <textarea
+                  name="contactUsMessage"
+                  value={contactUsMessage}
+                  onChange={(e) => onChangeHandler(e)}
+                  rows="2"
+                  cols="25"
+                  required
+                />
               </div>
               <div className={styles.btn}>
-                <button type="submit">Send</button>
+                <button type="submit">
+                  {contactUsStatus ? <p>Sent</p> : <p>Send Email</p>}
+                </button>
               </div>
             </form>
           </div>

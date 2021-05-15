@@ -5,5 +5,8 @@
   "devDependencies": {
     "concurrently": "^6.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "nodemailer": "^6.6.0",
+    "reactstrap": "^8.9.0"
+  }
 }

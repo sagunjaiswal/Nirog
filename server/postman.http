@@ -1,0 +1,18 @@
+POST http://localhost:5000/doctor/register
+Content-Type: application/json
+
+{
+    "name" : "test--",
+    "highestDegree": "highestDegree",
+    "speciality": "speciality",  
+    "experience" : "5yrs7mnths",
+    "description": "description", 
+    "location": {
+        "clinicName": "clinicName",
+        "streetName": "streetName",
+        "locality": "locality",
+        "landmark": "landmark"
+    },
+    "email": "abvc@gmail.com",
+    "password":"testPassword"
+}
