@@ -42,11 +42,16 @@ export default function Navbar() {
         <Link to="/">
           <li className={styles.navLinks}>Lab Tests</li>
         </Link>
-        <Link to={location.pathname === "/register" ? "/login" : "/register"}>
-          <li className={styles.navLinks}>
-            {location.pathname === "/register" ? "Sign In" : "Sign Up"}
-          </li>
-        </Link>
+        {location.pathname !== "/register" ? (
+          <Link to="/register">
+            <li className={styles.navLinks}>Sign Up</li>
+          </Link>
+        ) : null}
+        {location.pathname !== "/login" ? (
+          <Link to="/login">
+            <li className={styles.navLinks}>Sign In</li>
+          </Link>
+        ) : null}
       </ul>
     </div>
   );
