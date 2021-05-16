@@ -1,0 +1,6 @@
+- Commit message
+  - added link to homepage in the navbar icon
+  - changed naming of state variable in NavBar.jsx
+  - implemented dynamic change in navbar button
+  - designed seperated cards for registration of doctor and user
+  - Removed registration buttons from landing page

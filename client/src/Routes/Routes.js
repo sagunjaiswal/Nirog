@@ -9,12 +9,15 @@ import UserRegistrationForm from "../Components/forms/Users/RegistrationForm/Use
 import Navbar from "../Components/Header/Navbar";
 import Application from "../Containers/App/Application";
 import LoginPage from "../Containers/LoginPage/index";
+import RegistrationPage from "../Containers/RegistrationPage/index";
 
 const Routes = () => {
   return (
     <Router>
       <Navbar />
       <Switch>
+        <Route path="/register" component={RegistrationPage} />
+        <Route path="/login" component={LoginPage} />
         <Route path="/doctor-registration" component={DoctorRegistrationForm} />
         <Route path="/doctor-login" component={LoginPage} />
         <Route path="/user-registration" component={UserRegistrationForm} />
