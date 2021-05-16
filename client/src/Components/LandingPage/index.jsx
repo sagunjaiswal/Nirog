@@ -6,16 +6,8 @@ import DoctorCategoryCard from "../../Components/Cards/DoctorCategoryCard";
 const LandingPage = () => {
   return (
     <div>
-      <Link to="/doctor-registration">
-        <button>DOCTOR REGISTRATION FORM</button>
-      </Link>
-      <br />
       <Link to="/doctor-login">
         <button>DOCTOR LOGIN FORM</button>
-      </Link>
-      <br />
-      <Link to="/user-registration">
-        <button>USER REGISTRATION FORM</button>
       </Link>
       <br />
       <Link to="/user-login">
