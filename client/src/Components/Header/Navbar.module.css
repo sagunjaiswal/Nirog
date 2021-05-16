@@ -29,10 +29,12 @@
   text-decoration: none;
   padding: 0.4rem 1.1rem;
 }
+
 .navLinks:hover {
   background-color: #435d70;
   border-radius: 4px;
   transition: all 0.6s ease-out;
+  text-decoration: none;
 }
 .fa-bars {
   color: #fff;
