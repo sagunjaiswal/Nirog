@@ -4,3 +4,7 @@
   - implemented dynamic change in navbar button
   - designed seperated cards for registration of doctor and user
   - Removed registration buttons from landing page
+- fixing login ui
+  - removed seperated routes for user and doctor login
+  - removed buttons for login
+  - added seperated buttons for login, signup(conditional rendering)
