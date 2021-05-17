@@ -5,6 +5,7 @@ const Doctor = require("../Models/DoctorSchema");
 const Location = require("../Models/LocationSchema");
 const TimeSchema = require("../Models/TimeSchema");
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 //desc:route for getting the list of all doctors
 //method:GET
@@ -125,7 +126,7 @@ router.post("/register", (req, res) => {
                   description: description,
                   location: [locationData._id],
                   email: email,
-                  password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
+                  password: password,
                 });
 
                 bcrypt.genSalt(10, (err, salt) => {
@@ -175,12 +176,44 @@ router.post("/register", (req, res) => {
 });
 
 //login
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/users/login",
-    failureFlash: true,
-  })(req, res, next);
-});
+router.post("/login", async (req, res) => {
+  try {
+    ///the destructuring of the inputed data
+    const { email, password } = req.body;
+    //validate
+    if (!email || !password)
+      return res.status(400).json({ msg: "Not all fields have been entered" });
 
+    const user = await Doctor.findOne({ email: email });
+    console.log(
+      "🚀 ~ file: DoctorRoutes.js ~ line 189 ~ router.post ~ user",
+      user
+    );
+
+    //if the user doesnt exists
+    if (!user)
+      return res
+        .status(400)
+        .json({ msg: "No account with this email has been registered!" });
+
+    //matching the password while logging in
+
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (!isMatch)
+        return res
+          .status(400)
+          .json({ message: "Invalid Credential", loginStatus: false });
+
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      res.json({
+        token,
+        user: {
+          id: user._id,
+        },
+      });
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 module.exports = router;
