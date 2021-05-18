@@ -4,3 +4,76 @@
   flex-direction: column;
   justify-content: center;
 }
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30%;
+  height: 24rem;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 16px #9999998a;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.inputSection label {
+  font-family: serif;
+  margin: 0;
+  color: #5a5656;
+  font-weight: 600;
+  display: flex;
+}
+
+.inputSection input,
+select {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  line-height: 2rem;
+  padding: 4px 8px;
+  font-size: 1.2rem;
+  box-shadow: 0 0 20px #fff;
+}
+
+.inputSection input:focus-within,
+select:focus-within {
+  border-color: #0364cc94;
+  outline: none;
+  box-shadow: 4px 6px 16px #999;
+  transition: all ease-in-out 0.25s;
+}
+
+.inputSection input::placeholder {
+  color: #bebebe;
+}
+
+.errorInput input {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.errorInfo {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.submitButton {
+  line-height: 2.3rem;
+}
+
+.submitButton:hover {
+  font-weight: 500;
+}

@@ -15,3 +15,8 @@
   - change in route for forgot password in loginform
   - reimplementation of the dynamic rendering of the signup button in the navbar
   - implemented image shuffler in maintainance page
+- changing login form for seperation of doctor and user
+  - folder structure and file anme changed
+  - adding dropdown for role
+  - changing icon for role label
+  - implement additional logic for role
