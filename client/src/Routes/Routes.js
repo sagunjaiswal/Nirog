@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Default from "../Components/Default";
 import Footer from "../Components/Footer/Footer";
-import DoctorRegistrationForm from "../Components/forms/Doctor/RegistrationForm/DoctorRegistrationForm.jsx";
+import DoctorRegistrationForm from "../Components/forms/DoctorRegistrationForm/DoctorRegistrationForm.jsx";
 import UserRegistrationForm from "../Components/forms/Users/RegistrationForm/index.jsx";
 import Navbar from "../Components/Header/Navbar";
 import UnderMaintaince from "../Components/MaintainancePage/index";
