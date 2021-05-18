@@ -77,7 +77,7 @@ const DoctorLoginForm = ({ submitHandler, error }) => {
           SUBMIT
         </button>
         <span className={styles.resetPasswordText}>
-          <a href="/">forgot password?</a>
+          <a href="/maintainance">forgot password?</a>
         </span>
       </form>
     </div>
