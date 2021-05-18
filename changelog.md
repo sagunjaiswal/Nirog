@@ -8,3 +8,10 @@
   - removed seperated routes for user and doctor login
   - removed buttons for login
   - added seperated buttons for login, signup(conditional rendering)
+- styling user registration
+  - renamed user registration and css components
+  - onchange handler reimplemented
+  - maintainance page added for pages not implemented yet
+  - change in route for forgot password in loginform
+  - reimplementation of the dynamic rendering of the signup button in the navbar
+  - implemented image shuffler in maintainance page
