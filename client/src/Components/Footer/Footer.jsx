@@ -85,7 +85,7 @@ export default function Footer() {
                 />
               </div>
               <div className={styles.msg}>
-                <div className={styles.text}>Message *</div>
+                <div className={styles.text}>Message*</div>
                 <textarea
                   name="contactUsMessage"
                   value={contactUsMessage}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { useHistory } from "react-router-dom";
-import { passwordVerifyHandler } from "../../../../helperMethods";
+import { passwordVerifyHandler } from "../../../helperMethods";
 import axios from "axios";
 
 const UserRegistrationForm = () => {
