@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Default from "../Components/Default";
 import Footer from "../Components/Footer/Footer";
-import DoctorRegistrationForm from "../Components/forms/DoctorRegistrationForm/DoctorRegistrationForm.jsx";
-import UserRegistrationForm from "../Components/forms/Users/RegistrationForm/index.jsx";
+import DoctorRegistrationForm from "../Components/forms/DoctorRegistrationForm/index";
+import UserRegistrationForm from "../Components/forms/UserRegistrationForm/index";
 import Navbar from "../Components/Header/Navbar";
 import UnderMaintaince from "../Components/MaintainancePage/index";
 import Application from "../Containers/App/Application";

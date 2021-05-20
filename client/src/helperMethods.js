@@ -26,3 +26,17 @@ export const loginFormSubmitHandler = (loginData, role) => {
 export const passwordVerifyHandler = (passowrd, retypedPwd) => {
   return passowrd === retypedPwd;
 };
+
+export const doctorRegistrationHandler = (doctorData) => {
+  axios
+    .post("http://localhost:5000/doctor/register", doctorData)
+    .then((res) => {
+      console.log(res.data);
+      console.log(doctorData);
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("Sorry!Can not Register");
+      // err.response.data.msg && setBackendError(err.response.data.msg);
+    });
+};
