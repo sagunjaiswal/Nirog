@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./styles.module.css";
 import { loginFormSubmitHandler } from "../../helperMethods";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../UserContext";
 
 const LoginPage = () => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, SetRole] = useState("");
+  const history = useHistory();
+  const { setUserData } = useContext(UserContext);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -31,7 +35,7 @@ const LoginPage = () => {
       email: email,
       password: password,
     };
-    loginFormSubmitHandler(loginData, role);
+    loginFormSubmitHandler(loginData, role, history, setUserData);
   };
   return (
     <div className={styles.loginFormContainer}>

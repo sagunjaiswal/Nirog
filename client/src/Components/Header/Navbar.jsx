@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Navbar.module.css";
+import { useHistory } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
+
+import UserContext from "../../UserContext";
 
 export default function Navbar() {
   const [isClicked, setIsClicked] = useState(false);
@@ -10,6 +13,20 @@ export default function Navbar() {
   const handleClick = () => {
     let prevClicked = isClicked;
     setIsClicked(!prevClicked);
+  };
+
+  const { userData, setUserData } = useContext(UserContext);
+
+  const history = useHistory();
+
+  const register = () => history.push("/register");
+  const login = () => history.push("/login");
+  const logout = () => {
+    setUserData({
+      token: undefined,
+      user: undefined,
+    });
+    localStorage.setItem("auth-token", "");
   };
 
   return (
@@ -42,18 +59,30 @@ export default function Navbar() {
         <Link to="/maintainance">
           <li className={styles.navLinks}>Lab Tests</li>
         </Link>
-        {location.pathname !== "/register" &&
-        location.pathname !== "/user-registration" &&
-        location.pathname !== "/doctor-registration" ? (
-          <Link to="/register">
-            <li className={styles.navLinks}>Sign Up</li>
-          </Link>
-        ) : null}
-        {location.pathname !== "/login" ? (
-          <Link to="/login">
-            <li className={styles.navLinks}>Sign In</li>
-          </Link>
-        ) : null}
+        {userData.user ? (
+          <li className={styles.navLinks} onClick={logout}>
+            Log out
+          </li>
+        ) : (
+          <>
+            {location.pathname !== "/register" &&
+            location.pathname !== "/user-registration" &&
+            location.pathname !== "/doctor-registration" ? (
+              <Link to="/register">
+                <li className={styles.navLinks} onClick={register}>
+                  Sign Up
+                </li>
+              </Link>
+            ) : null}
+            {location.pathname !== "/login" ? (
+              <Link to="/login">
+                <li className={styles.navLinks} onClick={login}>
+                  Sign In
+                </li>
+              </Link>
+            ) : null}
+          </>
+        )}
       </ul>
     </div>
   );

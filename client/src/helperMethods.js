@@ -8,7 +8,12 @@ export const passowrdValidationHandler = (password) => {
 };
 
 //desc:method for login-form submit to the backend
-export const loginFormSubmitHandler = (loginData, role) => {
+export const loginFormSubmitHandler = (
+  loginData,
+  role,
+  history,
+  setUserData
+) => {
   let loginUrl = `${BASE_URL}/${
     role === "Doctor" ? "doctor/login" : "user/login"
   }`;
@@ -16,10 +21,18 @@ export const loginFormSubmitHandler = (loginData, role) => {
   axios
     .post(`${loginUrl}`, loginData)
     .then((res) => {
-      alert("Login Successful");
+      console.log(res.data);
+      console.log(loginData);
+      setUserData({
+        token: res.data.token,
+        user: res.data.user,
+      });
+      localStorage.setItem("auth-token", res.data.token);
+      history.push("/");
     })
     .catch((err) => {
-      alert("Login unsuccessful");
+      console.log(err);
+      // err.response.data.msg && setBackendError(err.response.data.msg);
     });
 };
 

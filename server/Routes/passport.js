@@ -1,16 +1,43 @@
-const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs');
+const JwtStrategy = require("passport-jwt").Strategy;
+const bcrypt = require("bcryptjs");
 
-const User = require('../Models/DoctorSchema');
+const User = require("../Models/DoctorSchema");
 
-passport.use(new LocalStrategy((email,password,done) => {
-            User.findOne({email},(err, user) => {
-                if(err)
-                    return done(err);
-                if(!user)
-                    return done(null,false);
-                
+const cookieExtractor = (req) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies["access_token"];
+  }
+  return token;
+};
+
+passport.use(
+  new JwtStrategy(
+    {
+      jwtFromRequest: cookieExtractor,
+      secretOrKey: "sagun",
+    },
+    (payload, done) => {
+      User.findById({ _id: payload.sub }, (err, user) => {
+        if (err) return done(err, false);
+        if (user) return done(null, user);
+        else return done(null, false);
+      });
+    }
+  )
+);
+
+passport.use(
+  new LocalStrategy((email, password, done) => {
+    User.findOne({ email }, (err, user) => {
+      if (err) return done(err);
+      if (!user) return done(null, false);
+      return done(null, true);
+    });
+  })
+);
 //                 if(!user) {
 //                     return done(null, false, { message : 'That email is not registered!'})
 //                 }
