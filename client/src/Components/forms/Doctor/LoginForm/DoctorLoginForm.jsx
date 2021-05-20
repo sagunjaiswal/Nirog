@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./DoctorLoginForm.module.css";
 import axios from "axios";
+import UserContext from "../../../../UserContext";
+import { useHistory } from "react-router-dom";
 
 const DoctorLoginForm = ({ submitHandler, error }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [backendError, setBackendError] = useState("");
+  const { userData, setUserData } = useContext(UserContext);
+  const history = useHistory();
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -20,11 +25,26 @@ const DoctorLoginForm = ({ submitHandler, error }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    const loginData = {
+    const objToSend = {
       email: email,
       password: password,
     };
-    submitHandler(loginData);
+    axios
+      .post("http://localhost:5000/doctor/login", objToSend)
+      .then((res) => {
+        console.log(res.data);
+        console.log(objToSend);
+        setUserData({
+          token: res.data.token,
+          user: res.data.user,
+        });
+        localStorage.setItem("auth-token", res.data.token);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        err.response.data.msg && setBackendError(err.response.data.msg);
+      });
   };
 
   return (

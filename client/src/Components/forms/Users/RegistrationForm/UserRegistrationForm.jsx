@@ -20,16 +20,6 @@ const UserRegistrationForm = () => {
       email: email,
       password: password,
     };
-    axios
-      .post("http://localhost:5000/user/register", objToSend)
-      .then((res) => {
-        console.log(res.data);
-        console.log(objToSend);
-      })
-      .catch((err) => {
-        console.log(err);
-        // err.response.data.msg && setBackendError(err.response.data.msg);
-      });
   };
 
   const onChangeHandler = (e) => {
