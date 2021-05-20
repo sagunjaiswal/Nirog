@@ -20,3 +20,9 @@
   - adding dropdown for role
   - changing icon for role label
   - implement additional logic for role
+- design doctor registration form
+  - cahnged color of the + button in faq section
+  - divided the doctor registration in three component
+  - design created for doctor registration
+  - folder structure changed for user registration
+  - implemented button for show and hide forms
