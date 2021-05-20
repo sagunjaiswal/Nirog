@@ -30,19 +30,21 @@ export default function Navbar() {
           isClicked ? `${styles.navMenu} ${styles.active}` : styles.navMenu
         }
       >
-        <Link to="/">
+        <Link to="/maintainance">
           <li className={styles.navLinks}>About Us</li>
         </Link>
-        <Link to="/">
+        <Link to="/maintainance">
           <li className={styles.navLinks}>Offers</li>
         </Link>
-        <Link to="/">
+        <Link to="/maintainance">
           <li className={styles.navLinks}>Contact Us</li>
         </Link>
-        <Link to="/">
+        <Link to="/maintainance">
           <li className={styles.navLinks}>Lab Tests</li>
         </Link>
-        {location.pathname !== "/register" ? (
+        {location.pathname !== "/register" &&
+        location.pathname !== "/user-registration" &&
+        location.pathname !== "/doctor-registration" ? (
           <Link to="/register">
             <li className={styles.navLinks}>Sign Up</li>
           </Link>
