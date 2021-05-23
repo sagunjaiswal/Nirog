@@ -26,3 +26,9 @@
 .cardImage > img {
   height: fit-content;
 }
+.card:hover {
+  background-color: #dfe7ec;
+  cursor: pointer;
+  transform: scale(1.04);
+  transition: all 1s ease;
+}
