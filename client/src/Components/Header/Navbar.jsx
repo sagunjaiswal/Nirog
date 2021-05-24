@@ -47,7 +47,7 @@ export default function Navbar() {
           isClicked ? `${styles.navMenu} ${styles.active}` : styles.navMenu
         }
       >
-        <Link to="/maintainance" style={{ textDecoration: "none" }}>
+        <Link to="/about-us" style={{ textDecoration: "none" }}>
           <li className={styles.navLinks}>About Us</li>
         </Link>
         <Link to="/maintainance" style={{ textDecoration: "none" }}>
