@@ -3,14 +3,23 @@ import styles from "./styles.module.css";
 
 export default function AboutUs() {
   return (
-    <div className="container">
+    <>
       <h1>About Us</h1>
-      <div className="aboutUs">
-        <img src=".\assets\aboutUs.svg" alt="about us image" />
+      <div className={styles.container}>
+        <div className={styles.aboutUsImg}>
+          <img src=".\assets\aboutUs.svg" alt="about us image" />
+        </div>
+        <div className={styles.aboutUs}>
+          DocTalk is on a goal to make doctor consulattaions accessible.It is
+          quick easy to use. With the help of DocTalk you can book appointments
+          of the best doctors and medical practitioners in a matter of seconds.
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque sequi
+          expedita debitis. Facilis quam quos aut beatae velit voluptates
+          praesentium repellat harum optio recusandae laudantium, soluta
+          accusantium sed. Eos maiores officiis necessitatibus enim deserunt,
+          similique.
+        </div>
       </div>
-      <div className="aboutUs">
-        DocTalk is on a goal to make doctor consulatataions accessible.
-      </div>
-    </div>
+    </>
   );
 }
