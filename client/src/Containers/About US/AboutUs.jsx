@@ -7,7 +7,7 @@ export default function AboutUs() {
       <h1>About Us</h1>
       <div className={styles.container}>
         <div className={styles.aboutUsImg}>
-          <img src=".\assets\aboutUs.svg" alt="about us image" />
+          <img src=".\assets\aboutUs.svg" alt="about us " />
         </div>
         <div className={styles.aboutUs}>
           DocTalk is on a goal to make doctor consulattaions accessible.It is

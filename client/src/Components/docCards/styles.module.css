@@ -3,6 +3,35 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+h4 {
+  -webkit-text-decoration: peru solid overline;
+  text-decoration: peru solid overline;
+  -webkit-text-decoration-skip: objects;
+  text-decoration-skip: objects;
+  color: lightcoral;
+}
+h6 > a {
+  position: relative;
+  display: inline-block;
+
+  color: royalblue;
+  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    midnightblue,
+    midnightblue 50%,
+    royalblue 50%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+}
+h6 > a:hover {
+  background-position: 0 100%;
+}
 .card {
   width: 200px;
   height: 250px;
@@ -14,8 +43,10 @@
   border-style: solid;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  padding-left: 1.4rem;
+  /* padding-left: 1.4rem; */
   padding-top: 1rem;
+  text-align: center;
+  font-size: small;
 }
 
 .cardImage {
@@ -27,7 +58,7 @@
   height: fit-content;
 }
 .card:hover {
-  background-color: #dfe7ec;
+  background-color: #ebeff1;
   cursor: pointer;
   transform: scale(1.04);
   transition: all 1s ease;

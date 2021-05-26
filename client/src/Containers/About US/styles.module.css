@@ -27,12 +27,28 @@ h1 {
   padding: 50px;
   margin-right: 40px;
 }
-/* 
-@media screen and(max-width: 1100px) {
-  .aboutUsImg > img {
-    max-width: 20vw;
-    margin-left: 2rem;
-  }
+
+@media only screen and (max-width: 680px) {
   .aboutUsImg {
+    display: none;
   }
-} */
+  .container {
+    background-image: url("./aboutUs.svg");
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    /* background-position: center; */
+    max-width: 100%;
+    background-position: 50% 50%;
+    vertical-align: middle;
+    align-items: center;
+    /* font-size: 0; */
+    /* line-height: 0; */
+  }
+  .aboutUsImg > img {
+    display: inline-block;
+
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+}
