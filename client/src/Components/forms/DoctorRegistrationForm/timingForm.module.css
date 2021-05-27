@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 0;
+  padding: 32px 32px;
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 0 16px #9999998a;
@@ -18,6 +18,8 @@
 .inputSection {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin-bottom: 12px;
 }
 
 .inputSection label {
@@ -35,11 +37,12 @@
   border-radius: 5px;
   line-height: 2rem;
   padding: 4px 8px;
-  font-size: 1.2rem;
   box-shadow: 0 0 20px #fff;
+  width: 250px;
+  cursor: pointer;
 }
 
-/*.inputSection input:focus-within,
+.inputSection input:focus-within,
 .inputSection select:focus-within,
 .inputSection textarea:focus-within {
   border-color: #0364cc94;
@@ -50,7 +53,7 @@
 
 .inputSection input::placeholder {
   color: #bebebe;
-} */
+}
 
 .errorInput input {
   border-color: #dc3545;
@@ -62,7 +65,8 @@
   font-weight: 600;
 }
 
-.timeInput {
+.timeInputSection {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 }
