@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./timingForm.module.css";
 const TimingForm = ({ setTimingDetails }) => {
+  let time = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   //timings
   const [mondayMorningSlot, setMondayMorningSlot] = useState("");
   const [mondayEveningSlot, setMorningEveningSlot] = useState("");
@@ -260,17 +261,29 @@ const TimingForm = ({ setTimingDetails }) => {
           return (
             <div className={styles.inputSection} key={index}>
               <h4>{getDay(index)}</h4>
-              <div className={styles.timeInput}>
-                <label>Morning Slot : </label>
+              <div className={styles.timeInputSection}>
                 <div>
+                  <label>Morning Slot: </label>
                   <select>
-                    <option value=""> select Time slot</option>
+                    <option value="">From...</option>
+                  </select>
+                  <select>
+                    <option value="">To...</option>
                   </select>
                 </div>
-                <label>Evening Slot : </label>
                 <div>
+                  <label>Evening Slot : </label>
                   <select>
-                    <option value=""> select Time slot</option>
+                    <option value="">From...</option>
+                    {[4, 5, 6, 7, 8, 9, 10].map((val, index) => {
+                      return (
+                        <option key={index} value={val}>{`${val} pm`}</option>
+                      );
+                    })}
+                  </select>
+                  <select>
+                    <option value="">To...</option>
+                    {/* {time.filter(eveTo => eveTo > )} */}
                   </select>
                 </div>
               </div>

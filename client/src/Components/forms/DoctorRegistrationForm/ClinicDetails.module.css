@@ -61,3 +61,10 @@
   color: #dc3545;
   font-weight: 600;
 }
+.addNextImage {
+  transition: all 0.5s ease;
+}
+
+.addNextImage:hover {
+  transform: rotate(180deg);
+}
