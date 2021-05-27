@@ -260,7 +260,7 @@ const DoctorDetails = ({
             }}
             onClick={() => setShowClinicForm(true)}
           >
-            Ener Clinic Details
+            Enter Clinic Details
             <img
               src="/assets/add.svg"
               alt="open-form"
