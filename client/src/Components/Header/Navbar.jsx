@@ -31,7 +31,7 @@ export default function Navbar() {
 
   return (
     <div className={styles.navbar}>
-      <Link to="/">
+      <Link to="/" style={{ textDecoration: "none" }}>
         <h1 className={styles.navbarLogo}>
           Nirog<i className="fas fa-stethoscope"></i>
         </h1>
@@ -47,16 +47,16 @@ export default function Navbar() {
           isClicked ? `${styles.navMenu} ${styles.active}` : styles.navMenu
         }
       >
-        <Link to="/maintainance">
+        <Link to="/about-us" style={{ textDecoration: "none" }}>
           <li className={styles.navLinks}>About Us</li>
         </Link>
-        <Link to="/maintainance">
+        <Link to="/maintainance" style={{ textDecoration: "none" }}>
           <li className={styles.navLinks}>Offers</li>
         </Link>
-        <Link to="/maintainance">
+        <Link to="/contact-us" style={{ textDecoration: "none" }}>
           <li className={styles.navLinks}>Contact Us</li>
         </Link>
-        <Link to="/maintainance">
+        <Link to="/maintainance" style={{ textDecoration: "none" }}>
           <li className={styles.navLinks}>Lab Tests</li>
         </Link>
         {userData.user ? (
@@ -68,14 +68,14 @@ export default function Navbar() {
             {location.pathname !== "/register" &&
             location.pathname !== "/user-registration" &&
             location.pathname !== "/doctor-registration" ? (
-              <Link to="/register">
+              <Link to="/register" style={{ textDecoration: "none" }}>
                 <li className={styles.navLinks} onClick={register}>
                   Sign Up
                 </li>
               </Link>
             ) : null}
             {location.pathname !== "/login" ? (
-              <Link to="/login">
+              <Link to="/login" style={{ textDecoration: "none" }}>
                 <li className={styles.navLinks} onClick={login}>
                   Sign In
                 </li>

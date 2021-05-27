@@ -12,6 +12,8 @@ import LoginPage from "../Containers/LoginPage/index";
 import RegistrationPage from "../Containers/RegistrationPage/index";
 import Axios from "axios";
 import UserContext from "../UserContext";
+import AboutUs from "../Containers/About US/AboutUs.jsx";
+import ContactUs from "../Containers/Contact Us/ContactUs";
 
 const Routes = () => {
   const [userData, setUserData] = useState({
@@ -73,6 +75,8 @@ const Routes = () => {
             component={userData.user ? Application : UserRegistrationForm}
           />
           <Route path="/maintainance" component={UnderMaintaince} />
+          <Route path="/about-us" component={AboutUs} />
+          <Route path="/contact-us" component={ContactUs} />
           <Route path="/" exact component={Application} />
           <Route component={Default} />
         </Switch>

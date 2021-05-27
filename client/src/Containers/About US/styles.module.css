@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap");
+h1 {
+  font-family: "Pattaya", sans-serif;
+  text-align: center;
+  padding: 25px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  font-family: "Pattaya", sans-serif;
+  font-size: large;
+  font-size: 22px;
+  color: grey;
+}
+
+.aboutUsImg > img {
+  height: 30rem;
+  width: 40vw;
+  overflow: hidden;
+  margin-right: 1rem;
+  padding-right: 20px;
+  padding: 40px;
+}
+
+.aboutUs {
+  padding: 50px;
+  margin-right: 40px;
+}
+
+@media only screen and (max-width: 680px) {
+  .aboutUsImg {
+    display: none;
+  }
+  .container {
+    background-image: url("./aboutUs.svg");
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    /* background-position: center; */
+    max-width: 100%;
+    background-position: 50% 50%;
+    vertical-align: middle;
+    align-items: center;
+    /* font-size: 0; */
+    /* line-height: 0; */
+  }
+  .aboutUsImg > img {
+    display: inline-block;
+
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+}
