@@ -53,7 +53,7 @@ export default function Navbar() {
         <Link to="/maintainance" style={{ textDecoration: "none" }}>
           <li className={styles.navLinks}>Offers</li>
         </Link>
-        <Link to="/maintainance" style={{ textDecoration: "none" }}>
+        <Link to="/contact-us" style={{ textDecoration: "none" }}>
           <li className={styles.navLinks}>Contact Us</li>
         </Link>
         <Link to="/maintainance" style={{ textDecoration: "none" }}>
