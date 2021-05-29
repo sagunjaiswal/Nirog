@@ -1,9 +1,10 @@
 .form {
   margin: 70px;
+  margin-right: 0px;
   max-width: 800px;
   padding: 20px 12px 10px 20px;
   font: 13px;
-  color: grey;
+  color: #d3d3d3;
 }
 
 .formInput {
@@ -13,7 +14,18 @@
   padding: 12px;
   display: block;
   font-weight: bold;
-  width: 40rem;
+  width: 35rem;
+}
+.form textarea {
+  resize: none;
+}
+
+.formInput select option[value="0"] {
+  display: none;
+  color: #d3d3d3;
+}
+.formInput select option {
+  color: black;
 }
 
 .submitButton {

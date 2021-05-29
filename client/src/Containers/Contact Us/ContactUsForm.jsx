@@ -8,7 +8,10 @@ export default function ContactUsForm() {
         className={styles.formInput}
         placeholder="How can we help you ?* "
       >
-        <option selected disabled value="0">
+        {/* <option selected disabled hidden value="0">
+          How can we help you ?*
+        </option> */}
+        <option value="" hidden>
           How can we help you ?*
         </option>
         <option value="1">
@@ -24,11 +27,12 @@ export default function ContactUsForm() {
       <input className={styles.formInput} placeholder="Email Address" />
       <input className={styles.formInput} placeholder="Mobile number" />
       <textarea
+        rows="7"
         className={styles.formInput}
         placeholder="Type in your message..."
       />
       <button type="submit" className={styles.submitButton}>
-        SUBMIT
+        SUBMIT FEEDBACK
       </button>
     </div>
   );
