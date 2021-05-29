@@ -1,0 +1,36 @@
+.form {
+  margin: 70px;
+  margin-right: 0px;
+  max-width: 800px;
+  padding: 20px 12px 10px 20px;
+  font: 13px;
+  color: #d3d3d3;
+}
+
+.formInput {
+  padding: 0;
+  display: block;
+  margin: 10px 0 43px 0;
+  padding: 12px;
+  display: block;
+  font-weight: bold;
+  width: 35rem;
+}
+.form textarea {
+  resize: none;
+}
+
+.formInput select option[value="0"] {
+  display: none;
+  color: #d3d3d3;
+}
+.formInput select option {
+  color: black;
+}
+
+.submitButton {
+  padding: 10px 30px;
+  background-color: brown;
+  color: white;
+  border-radius: 20px;
+}
