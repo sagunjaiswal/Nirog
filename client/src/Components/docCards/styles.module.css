@@ -3,14 +3,14 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-h4 {
+.card h4 {
   -webkit-text-decoration: peru solid overline;
   text-decoration: peru solid overline;
   -webkit-text-decoration-skip: objects;
   text-decoration-skip: objects;
   color: lightcoral;
 }
-h6 > a {
+.card h6 > a {
   position: relative;
   display: inline-block;
 
@@ -29,7 +29,7 @@ h6 > a {
   background-position: 100%;
   transition: background-position 275ms ease;
 }
-h6 > a:hover {
+.card h6 > a:hover {
   background-position: 0 100%;
 }
 .card {
@@ -54,7 +54,7 @@ h6 > a:hover {
   margin-bottom: 20px;
   object-fit: contain;
 }
-.cardImage > img {
+.cardImage img {
   height: fit-content;
 }
 .card:hover {

@@ -13,7 +13,7 @@ const ClinicDetails = ({ clinicDataCollector }) => {
   const [district, setDistrict] = useState("");
   const [state, setState] = useState("");
   const [timingDetails, setTimingDetails] = useState({});
-  const [showTimingForm, setShowTimingForm] = useState(false);
+  const [showTimingForm, setShowTimingForm] = useState(true);
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     const trimmedValue = value.trimLeft();
@@ -136,9 +136,9 @@ const ClinicDetails = ({ clinicDataCollector }) => {
             width: "85%",
             margin: "20px 0",
           }}
-          onClick={() => setShowTimingForm(true)}
+          onClick={() => setShowTimingForm(!showTimingForm)}
         >
-          Ener Time Details
+          {!showTimingForm ? "Enter Time Details" : "Hide Time Details"}
           <img
             src="/assets/add.svg"
             alt="open-form"

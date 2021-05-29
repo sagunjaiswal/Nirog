@@ -14,7 +14,7 @@ h1 {
   color: grey;
 }
 
-.aboutUsImg > img {
+.aboutUsImg img {
   height: 30rem;
   width: 40vw;
   overflow: hidden;

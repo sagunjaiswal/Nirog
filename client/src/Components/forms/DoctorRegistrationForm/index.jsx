@@ -8,7 +8,7 @@ const DoctorRegistrationForm = () => {
   const [personalDetails, setPersonalDetails] = useState({});
   const [clinicData, setClinicData] = useState({});
   const [backendError, setBackendError] = useState("");
-  const [showClinicForm, setShowClinicForm] = useState(false);
+  const [showClinicForm, setShowClinicForm] = useState(true);
 
   const submitHandler = (e) => {
     e.preventDefault();
